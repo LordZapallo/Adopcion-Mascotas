@@ -11,7 +11,7 @@ class SesionController extends Controller
     public function recuperar(){
         $usuario = Auth::user()->nombre . " " . Auth::user()->apellido;
         $email = Auth::user()->email;
-        $rol = DB::select("SELECT * FROM users WHERE id = " . Auth::user()->id);
+        $rol = DB::select("SELECT * FROM rol WHERE id_rol = " . Auth::user()->id_rol);
         return [
             'nombre' => $usuario,
             'roles' => $rol,
@@ -19,7 +19,7 @@ class SesionController extends Controller
         ];
     }
     public function roles(){
-        $rol = DB::select("SELECT * FROM users WHERE users = " . Auth::user()->id);
+        $rol = DB::select("SELECT * FROM rol WHERE id_rol = " . Auth::user()->id_rol);
         return $rol;
     }
 }
