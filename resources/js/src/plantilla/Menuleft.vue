@@ -11,18 +11,18 @@
         </div>
         <nav class="sidebar-nav">
           <ul id="sidebarnav">
-            <li v-if="this.rol_usuario.id_rol<=3">
-              <a  class=" waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false" to="componentes\Triaje.vue"><i class="mdi mdi-paw"></i><span class="hide-menu">MASCOTAS </span></a>
+            <li v-if="this.rol_usuario.id_rol<=3"><router-link to="/mascotas">
+              <i class="mdi mdi-paw"></i><span class="hide-menu">MASCOTAS </span>
              <!-- <ul aria-expanded="false" class="collapse">
                   <li v-if="rol_usuario.nombre"><router-link to="/">FICHA USUARIO</router-link></li>
               </ul>-->
-            </li>
-            <li v-if="this.rol_usuario.id_rol<=3">
-              <a  class=" waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">ADOPCIONES</span></a>
-            </li>
-            <li v-if="this.rol_usuario.id_rol<=2">
-              <a  class=" waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-file-outline"></i><span class="hide-menu">GESTIÓN ADOPCIONES </span></a>
-            </li>
+            </router-link></li>
+            <li v-if="this.rol_usuario.id_rol<=3"><router-link to="/adopciones">
+              <i class="mdi mdi-file"></i><span class="hide-menu">ADOPCIONES</span>
+            </router-link></li>
+            <li v-if="this.rol_usuario.id_rol<=2"><router-link to="/gestionadopciones">
+              <i class="mdi mdi-file-outline"></i><span class="hide-menu">GESTIÓN ADOPCIONES </span>
+            </router-link></li>
           </ul>
         </nav>
       </div>

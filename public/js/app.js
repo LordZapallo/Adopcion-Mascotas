@@ -70980,73 +70980,31 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: [{
     path: '',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(2)]).then(__webpack_require__.bind(null, /*! ./src/plantilla/Menu.vue */ "./resources/js/src/plantilla/Menu.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ./src/plantilla/Menu.vue */ "./resources/js/src/plantilla/Menu.vue"));
     },
     children: [{
       path: '/',
       name: 'inicio',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(13)]).then(__webpack_require__.bind(null, /*! ./src/componentes/Usuarios.vue */ "./resources/js/src/componentes/Usuarios.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./src/componentes/Usuarios.vue */ "./resources/js/src/componentes/Usuarios.vue"));
       }
     }, {
-      path: '/accesos',
-      name: 'accesos',
+      path: '/mascotas',
+      name: 'mascotas',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ./src/componentes/Accesos.vue */ "./resources/js/src/componentes/Accesos.vue"));
+        return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ./src/componentes/Mascotas.vue */ "./resources/js/src/componentes/Mascotas.vue"));
       }
     }, {
-      path: '/auditorias',
-      name: 'auditorias',
+      path: '/adopciones',
+      name: 'adopciones',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ./src/componentes/Auditoria.vue */ "./resources/js/src/componentes/Auditoria.vue"));
+        return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./src/componentes/Adopciones.vue */ "./resources/js/src/componentes/Adopciones.vue"));
       }
     }, {
-      path: '/pacientes',
-      name: 'pacientes',
+      path: '/gestionadopciones',
+      name: 'gestionadopciones',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./src/componentes/Pacientes.vue */ "./resources/js/src/componentes/Pacientes.vue"));
-      }
-    }, {
-      path: '/turnos',
-      name: 'turnos',
-      component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(12)]).then(__webpack_require__.bind(null, /*! ./src/componentes/Turno.vue */ "./resources/js/src/componentes/Turno.vue"));
-      }
-    }, {
-      path: '/atencion',
-      name: 'atencion',
-      component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ./src/componentes/Atencion.vue */ "./resources/js/src/componentes/Atencion.vue"));
-      }
-    }, {
-      path: '/triaje',
-      name: 'triaje',
-      component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./src/componentes/Triaje.vue */ "./resources/js/src/componentes/Triaje.vue"));
-      }
-    }, {
-      path: '/resultados',
-      name: 'resultados',
-      component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! ./src/componentes/Resultados.vue */ "./resources/js/src/componentes/Resultados.vue"));
-      }
-    }, {
-      path: '/recetas',
-      name: 'recetas',
-      component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ./src/componentes/Receta.vue */ "./resources/js/src/componentes/Receta.vue"));
-      }
-    }, {
-      path: '/actualizar',
-      name: 'actualizar',
-      component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./src/componentes/Actualizar.vue */ "./resources/js/src/componentes/Actualizar.vue"));
-      }
-    }, {
-      path: '/vista',
-      name: 'vista',
-      component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ./src/componentes/Vista.vue */ "./resources/js/src/componentes/Vista.vue"));
+        return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ./src/componentes/GestionAdopciones.vue */ "./resources/js/src/componentes/GestionAdopciones.vue"));
       }
     }]
   }, {
