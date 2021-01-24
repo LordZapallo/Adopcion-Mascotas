@@ -13,7 +13,7 @@ const router = new Router({
                     path: '/',
                     name: 'inicio',
                     component: () =>
-                        import ('./src/componentes/Usuarios.vue')
+                        import ('./src/componentes/Inicio.vue')
                 },
                 {
                     path: '/mascotas',

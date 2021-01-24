@@ -70986,7 +70986,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '/',
       name: 'inicio',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./src/componentes/Usuarios.vue */ "./resources/js/src/componentes/Usuarios.vue"));
+        return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./src/componentes/Inicio.vue */ "./resources/js/src/componentes/Inicio.vue"));
       }
     }, {
       path: '/mascotas',
