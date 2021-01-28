@@ -18,6 +18,10 @@ import $ from 'jquery';
 
 import 'material-icons/iconfont/material-icons.css';
 
+import VueCarousel from '@chenfengyuan/vue-carousel';
+
+Vue.component("vue-carousel", VueCarousel);
+
 Vue.config.productionTip = false;
 var url = window.location.pathname;
 if (url != "/login") {

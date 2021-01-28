@@ -10,6 +10,7 @@ class Mascota extends Model
     protected $primaryKey = 'id_mascota';
     protected $fillable = [
         'nombre',
+        'imagen',
         'especie',
         'raza',
         'edad',

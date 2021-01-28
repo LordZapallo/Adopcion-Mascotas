@@ -9,6 +9,10 @@ Auth::routes();
 //Sesion del backend
 Route::get('/sesion/recuperar', 'SesionController@recuperar');
 Route::get('/sesion/roles', 'SesionController@roles');
+//mascota
+Route::get('/mascotas/listar', 'MascotaCOntroller@listar');
+
+
 
 //CRUD Usuarios
 Route::get('/usuarios/listar', 'UsuarioController@listar');

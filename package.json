@@ -24,6 +24,8 @@
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
+        "@chenfengyuan/vue-carousel": "^1.0.6",
+        "@vue/compiler-sfc": "^3.0.5",
         "apexcharts": "^3.15.6",
         "material-icons": "^0.3.1",
         "moment": "^2.24.0",
