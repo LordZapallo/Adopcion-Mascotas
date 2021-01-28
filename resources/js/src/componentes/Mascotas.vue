@@ -38,6 +38,7 @@
                                     <th>Raza</th>
                                     <th>Sexo</th>
                                     <th>Peso</th>
+                                    <th>Estado</th>
                                 </tr>
                             </thead>
                             <tbody v-if="recupera.length">
@@ -45,12 +46,17 @@
                                     v-for="(tr, index) in recupera"
                                     :key="index"
                                 >
-                                    <td>{{ tr.imagen }}</td>
+                                    <td class="imagen-td">
+                                        <img :src="'imagenes/mascotas/'+tr.imagen" class="imagen-tabla">
+                                    </td>
                                     <td>{{ tr.nombre }}</td>
                                     <td>{{ tr.especie }}</td>
                                     <td>{{ tr.raza }}</td>
                                     <td>{{ tr.sexo }}</td>
                                     <td>{{ tr.peso }}</td>
+                                    <td>
+                                        <span class="estado-general" :class="{'text-verde':tr.estado == 'disponible', 'text-danger':tr.estado == 'adoptado'}"> {{ tr.estado }}</span>
+                                    </td>
                                     <td class="pointer acciones">
                                         <i
                                             class="fa fa-eye"
@@ -137,708 +143,116 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">
-                            {{ titulomodal }}
-                        </h5>
-                        <button type="button" class="close" @click="cerrar()">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <h5 class="modal-title" id="exampleModalLabel"> {{ titulomodal }} </h5>
+                        <button type="button" class="close" @click="cerrar()"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
                         <form action>
                             <div class="row form-material">
+                                <div class="col-xl-6 col-lg-6 col-md-12">
+                                    <img :src="'imagenes/mascotas/' + form.imagen" class="imagen-modal">
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-12">
+                                    <div class="col-xl-12 col-lg-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Nombre:</label>
+                                            <input type="text" class="form-control" v-model="form.nombre"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Especie:</label>
+                                            <input type="text" class="form-control" v-model="form.especie"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Raza:</label>
+                                            <input type="text" class="form-control" v-model="form.raza"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="row form-material">
+                                            <div class="col-xl-6 col-lg-6 col-md-12">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Edad:</label>
+                                                    <input type="text" class="form-control" v-model="form.edad"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Sexo:</label>
+                                                    <input type="text" class="form-control" v-model="form.sexo"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-xl-3 col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Tipo Identificación</label
-                                        >
-                                        <select
-                                            class="form-control"
-                                            v-model="tipo_identificacion"
-                                        >
-                                            <option value="Cédula"
-                                                >Cédula</option
-                                            >
-                                            <option value="Pasaporte"
-                                                >Pasaporte</option
-                                            >
-                                        </select>
-                                        <div v-if="!tipo_identificacion">
-                                            <div
-                                                class="invalid-feedback"
-                                                style="display:block;"
-                                                v-for="err in errortipo_identificacion"
-                                                :key="err"
-                                            >
-                                                {{ err }}
-                                            </div>
-                                        </div>
+                                        <label for="exampleInputEmail1">Peso:</label>
+                                        <input type="text" class="form-control" v-model="form.peso"/>
                                     </div>
                                 </div>
-                                <div class="col-xl-4 col-lg-12 col-md-12">
+                                <div class="col-xl-3 col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Ingrese Identificación:</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="identificacion"
-                                            onkeypress="return solonumeros(event)"
-                                            maxlength="10"
-                                        />
-                                        <div v-if="!identificacion">
-                                            <div
-                                                class="invalid-feedback"
-                                                style="display:block;"
-                                                v-for="err in erroridentificacion"
-                                                :key="err"
-                                            >
-                                                {{ err }}
-                                            </div>
-                                        </div>
+                                        <label for="exampleInputEmail1">Talla:</label>
+                                        <input type="text" class="form-control" v-model="form.talla"/>
                                     </div>
                                 </div>
-                                <div class="col-xl-5 col-lg-12 col-md-12">
+                                <div class="col-xl-3 col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Apellido Paterno:</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="ape_paterno"
-                                            onkeypress="return sololetras(event)"
-                                        />
-                                        <div v-if="!ape_paterno">
-                                            <div
-                                                class="invalid-feedback"
-                                                style="display:block;"
-                                                v-for="err in errorape_paterno"
-                                                :key="err"
-                                            >
-                                                {{ err }}
-                                            </div>
-                                        </div>
+                                        <label for="exampleInputEmail1">Color:</label>
+                                        <input type="text" class="form-control" v-model="form.color"/>
                                     </div>
                                 </div>
-                                <div class="col-xl-5 col-lg-12 col-md-12">
+                                <div class="col-xl-3 col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Apellido Materno:</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="ape_materno"
-                                            onkeypress="return sololetras(event)"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="col-xl-7 col-lg-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Nombres:</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="nombre"
-                                            onkeypress="return sololetras(event)"
-                                        />
-                                        <div v-if="!nombre">
-                                            <div
-                                                class="invalid-feedback"
-                                                style="display:block;"
-                                                v-for="err in errornombre"
-                                                :key="err"
-                                            >
-                                                {{ err }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Fecha de Nacimiento</label
-                                        >
-                                        <input
-                                            type="date"
-                                            class="form-control"
-                                            v-model="fecha_nacimiento"
-                                        />
-                                        <div v-if="!fecha_nacimiento">
-                                            <div
-                                                class="invalid-feedback"
-                                                style="display:block;"
-                                                v-for="err in errorfecha_nacimiento"
-                                                :key="err"
-                                            >
-                                                {{ err }}
-                                            </div>
-                                        </div>
+                                        <label for="exampleInputEmail1">Esterilización:</label>
+                                        <input type="text" class="form-control" v-model="form.esterilizacion"/>
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        {{ sexo }}
-                                        <label for="exampleInputEmail1"
-                                            >Sexo:</label
-                                        >
-                                        <select
-                                            class="form-control"
-                                            v-model="sexo"
-                                        >
-                                            <option value="Hombre"
-                                                >Hombre</option
-                                            >
-                                            <option value="Mujer">Mujer</option>
-                                            <option value="Otros">Otros</option>
-                                        </select>
-                                        <div v-if="!sexo">
-                                            <div
-                                                class="invalid-feedback"
-                                                style="display:block;"
-                                                v-for="err in errorsexo"
-                                                :key="err"
-                                            >
-                                                {{ err }}
-                                            </div>
-                                        </div>
+                                        <label for="exampleInputEmail1">Personalidad:</label>
+                                        <input type="text" class="form-control" v-model="form.personalidad"/>
                                     </div>
                                 </div>
-                                <div class="col-xl-4 col-lg-6 col-md-12">
+                                <div class="col-xl-5 col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Orientacion Sexual:</label
-                                        >
-                                        <select
-                                            class="form-control"
-                                            v-model="orient_sex"
-                                        >
-                                            <option value="Heterosexual"
-                                                >Heterosexual</option
-                                            >
-                                            <option value="Homosexual"
-                                                >Homosexual</option
-                                            >
-                                            <option value="Bisexual"
-                                                >Bisexual</option
-                                            >
-                                            <option value="Asexual"
-                                                >Asexual</option
-                                            >
-                                            <option value="Pansexual"
-                                                >Pansexual</option
-                                            >
-                                            <option value="Demisexual"
-                                                >Demisexual</option
-                                            >
+                                        <label for="exampleInputEmail1">Albergue:</label>
+                                        <select class="form-control">
+                                            <option v-for="tr in albergue_lista" :key="tr.id_albergue" :value="tr.id_albergue"> {{ tr.nombre }} </option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-xl-4 col-lg-6 col-md-12">
+                                <div class="col-xl-3 col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Estado Civil:</label
-                                        >
-                                        <select
-                                            class="form-control"
-                                            v-model="est_civil"
-                                        >
-                                            <option value="Soltero(a)"
-                                                >Soltero</option
-                                            >
-                                            <option value="Casado(a)"
-                                                >Casado</option
-                                            >
-                                            <option value="Divorciado(a)"
-                                                >Divorciado</option
-                                            >
-                                            <option value="Viudo(a)"
-                                                >Viudo</option
-                                            >
-                                        </select>
-                                        <div v-if="!est_civil">
-                                            <div
-                                                class="invalid-feedback"
-                                                style="display:block;"
-                                                v-for="err in errorest_civil"
-                                                :key="err"
-                                            >
-                                                {{ err }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Nacionalidad:</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="nacionalidad"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Discapacidad:</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="discapacidad"
-                                        />
+                                        <label for="exampleInputEmail1">Estado:</label>
+                                        <input type="text" class="form-control" v-model="form.estado"/>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-12 col-md-12">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Alergias:</label
-                                        >
-                                        <textarea
-                                            rows="3"
-                                            type="text"
-                                            class="form-control"
-                                            v-model="alergias"
-                                        ></textarea>
-                                        <div v-if="!alergias">
-                                            <div
-                                                class="invalid-feedback"
-                                                style="display:block;"
-                                                v-for="err in erroralergias"
-                                                :key="err"
-                                            >
-                                                {{ err }}
-                                            </div>
-                                        </div>
+                                        <label for="exampleInputEmail1">Salud:</label>
+                                        <textarea rows="4" class="form-control" v-model="form.salud_cuidados"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-12 col-md-12">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Intervenciones Quirúrgicas:</label
-                                        >
-                                        <textarea
-                                            rows="3"
-                                            type="text"
-                                            class="form-control"
-                                            v-model="intervenciones"
-                                        ></textarea>
-                                        <div v-if="!intervenciones">
-                                            <div
-                                                class="invalid-feedback"
-                                                style="display:block;"
-                                                v-for="err in errorintervenciones"
-                                                :key="err"
-                                            >
-                                                {{ err }}
-                                            </div>
-                                        </div>
+                                        <label for="exampleInputEmail1">Información adicional:</label>
+                                        <textarea rows="4" class="form-control" v-model="form.informacion_adicional"></textarea>
                                     </div>
                                 </div>
-                                <div class="col-xl-4 col-lg-6 col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Vacunas Completas:</label
-                                        >
-                                        <select
-                                            class="form-control"
-                                            v-model="vacunas"
-                                        >
-                                            <option value="SI">SI</option>
-                                            <option value="NO">NO</option>
-                                        </select>
-                                        <div v-if="!vacunas">
-                                            <div
-                                                class="invalid-feedback"
-                                                style="display:block;"
-                                                v-for="err in errorvacunas"
-                                                :key="err"
-                                            >
-                                                {{ err }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Tipo de Sangre:</label
-                                        >
-                                        <select
-                                            class="form-control"
-                                            v-model="tipo_sangre"
-                                        >
-                                            <option value="A+">A+</option>
-                                            <option value="B+">B+</option>
-                                            <option value="O+">O+</option>
-                                            <option value="AB+">AB+</option>
-                                            <option value="A-">A-</option>
-                                            <option value="B-">B-</option>
-                                            <option value="O-">O-</option>
-                                            <option value="AB-">AB-</option>
-                                        </select>
-                                        <div v-if="!tipo_sangre">
-                                            <div
-                                                class="invalid-feedback"
-                                                style="display:block;"
-                                                v-for="err in errortipo_sangre"
-                                                :key="err"
-                                            >
-                                                {{ err }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Ocupacion</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="ocupacion"
-                                        />
-                                        <div v-if="!ocupacion">
-                                            <div
-                                                class="invalid-feedback"
-                                                style="display:block;"
-                                                v-for="err in errorocupacion"
-                                                :key="err"
-                                            >
-                                                {{ err }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Religión</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="religion"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Dirección:</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="direccion"
-                                        />
-                                        <div v-if="!direccion">
-                                            <div
-                                                class="invalid-feedback"
-                                                style="display:block;"
-                                                v-for="err in errordireccion"
-                                                :key="err"
-                                            >
-                                                {{ err }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Teléfono Domicilio:</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="telef_dom"
-                                            onkeypress="return solonumeros(event)"
-                                            maxlength="15"
-                                        />
-                                        <div v-if="!telef_dom">
-                                            <div
-                                                class="invalid-feedback"
-                                                style="display:block;"
-                                                v-for="err in errortelef_dom"
-                                                :key="err"
-                                            >
-                                                {{ err }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Teléfono Trabajo</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="telef_trab"
-                                            onkeypress="return solonumeros(event)"
-                                            maxlength="15"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Teléfono Celular</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="telef_cell"
-                                            onkeypress="return solonumeros(event)"
-                                            maxlength="10"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Email:</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="email"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Nombre Familiar:</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="nom_fam"
-                                            onkeypress="return sololetras(event)"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Apellido Familiar:</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="ape_fam"
-                                            onkeypress="return sololetras(event)"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Dirección Familiar:</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="direc_fam"
-                                            onkeypress="return sololetras(event)"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Teléfono Celular Familiar:</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            v-model="cel_fam"
-                                            onkeypress="return solonumeros(event)"
-                                            maxlength="10"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Estado</label
-                                        >
-                                        <select
-                                            class="form-control"
-                                            v-model="estado"
-                                        >
-                                            <option value="Activo"
-                                                >Activo</option
-                                            >
-                                            <option value="Inactivo"
-                                                >Inactivo</option
-                                            >
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Etnia:</label
-                                        >
-                                        <select
-                                            class="form-control"
-                                            v-model="etnia"
-                                        >
-                                            <option
-                                                :value="tr.TTJV_codetnia"
-                                                v-for="(tr, index) in contetnia"
-                                                :key="index"
-                                                v-text="tr.TTJV_descripcion"
-                                            ></option>
-                                        </select>
-                                        <div v-if="!etnia">
-                                            <div
-                                                class="invalid-feedback"
-                                                style="display:block;"
-                                                v-for="err in erroretnia"
-                                                :key="err"
-                                            >
-                                                {{ err }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Grupo Etario</label
-                                        >
-                                        <select
-                                            class="form-control"
-                                            v-model="grup_etario"
-                                        >
-                                            <option
-                                                :value="tr.TTJV_id_grupoetario"
-                                                v-for="(tr,
-                                                index) in contetario"
-                                                :key="index"
-                                                v-text="tr.TTJV_descricion"
-                                            ></option>
-                                        </select>
-                                        <div v-if="!grup_etario">
-                                            <div
-                                                class="invalid-feedback"
-                                                style="display:block;"
-                                                v-for="err in errorgrup_etario"
-                                                :key="err"
-                                            >
-                                                {{ err }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Provincia</label
-                                        >
-                                        <select
-                                            class="form-control"
-                                            v-model="provincia"
-                                            @change="listcanton(provincia)"
-                                        >
-                                            <option
-                                                :value="tr.TTJV_cod_provincia"
-                                                v-for="(tr,
-                                                index) in contprovincia"
-                                                :key="index"
-                                                v-text="tr.TTJV_descripcion"
-                                            ></option>
-                                        </select>
-                                        <div v-if="!provincia">
-                                            <div
-                                                class="invalid-feedback"
-                                                style="display:block;"
-                                                v-for="err in errorprovincia"
-                                                :key="err"
-                                            >
-                                                {{ err }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-md-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1"
-                                            >Cantón</label
-                                        >
-                                        <select
-                                            class="form-control"
-                                            v-model="canton"
-                                        >
-                                            <option
-                                                :value="tr.TTJV_cod_canton"
-                                                v-for="(tr,
-                                                index) in contcanton"
-                                                :key="index"
-                                                v-text="tr.TTJV_descripcion"
-                                            ></option>
-                                        </select>
-                                        <div v-if="!canton">
-                                            <div
-                                                class="invalid-feedback"
-                                                style="display:block;"
-                                                v-for="err in errorcanton"
-                                                :key="err"
-                                            >
-                                                {{ err }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--Fin-->
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button
-                            style="margin-left: auto;"
-                            type="button"
-                            class="btn btn-warning"
-                            v-if="tipomodal == 1"
-                            @click="guardaremergencia()"
-                        >
-                            Ingresar Paciente de Emergencia
-                        </button>
-                        <button
-                            type="button"
-                            class="btn btn-secondary"
-                            @click="cerrar()"
-                        >
+                        <button type="button" class="btn btn-secondary" @click="cerrar()">
                             Cerrar
                         </button>
-                        <button
-                            type="button"
-                            class="btn btn-primary"
-                            v-if="tipomodal == 1"
-                            @click="guardar()"
-                        >
-                            Guardar
-                        </button>
-                        <button
-                            type="button"
-                            class="btn btn-primary"
-                            v-if="tipomodal == 2"
-                            @click="editar()"
-                        >
-                            Editar
+                        <button type="button" class="btn btn-primary" @click="adoptar(form.id_mascota)">
+                            Adoptar
                         </button>
                     </div>
                 </div>
@@ -875,63 +289,25 @@ export default {
             tipomodal: null,
             error: 0,
             id: 0,
-            //variables paciente
-            f_persona: moment().format("YYYY-M-D"),
-            tipo_identificacion: "",
-            identificacion: "",
-            ape_paterno: "",
-            ape_materno: "",
-            nombre: "",
-            fecha_nacimiento: "",
-            sexo: "",
-            orient_sex: "",
-            est_civil: "",
-            nacionalidad: "",
-            discapacidad: "",
-            alergias: "",
-            intervenciones: "",
-            vacunas: "",
-            tipo_sangre: "",
-            ocupacion: "",
-            religion: "",
-            direccion: "",
-            telef_dom: "",
-            telef_trab: "",
-            telef_cell: "",
-            email: "",
-            nom_fam: "",
-            ape_fam: "",
-            direc_fam: "",
-            cel_fam: "",
-            estado: "",
-            etnia: "",
-            grup_etario: "",
-            provincia: "",
-            canton: "",
-            //arrays recuperacion select paciente
-            contetnia: [],
-            contetario: [],
-            contprovincia: [],
-            contcanton: [],
-            //validacion
-            errortipo_identificacion: [],
-            erroridentificacion: [],
-            errorape_paterno: [],
-            errornombre: [],
-            errorfecha_nacimiento: [],
-            errorsexo: [],
-            errorest_civil: [],
-            erroralergias: [],
-            errorintervenciones: [],
-            errorvacunas: [],
-            errortipo_sangre: [],
-            errorocupacion: [],
-            errordireccion: [],
-            errortelef_dom: [],
-            erroretnia: [],
-            errorgrup_etario: [],
-            errorprovincia: [],
-            errorcanton: []
+            form:{
+                id_mascota: null,
+                nombre: null,
+                especie: null,
+                raza: null,
+                edad: null,
+                sexo: null,
+                peso: null,
+                talla: null,
+                color: null,
+                esterilizacion: null,
+                personalidad: null,
+                salud_cuidados: null,
+                informacion_adicional: null,
+                estado: null,
+                id_albergue: null,
+                imagen: null,
+            },
+            albergue_lista:[]
         };
     },
     computed: {
@@ -957,34 +333,6 @@ export default {
                 from++;
             }
             return pagesArray;
-        },
-        fechaalerta() {
-            return moment()
-                .add(91, "days")
-                .format("YYYY-MM-DD hh:ss");
-        },
-        fechaalerta1() {
-            return moment()
-                .add(182, "days")
-                .format("YYYY-MM-DD hh:ss");
-        }
-    },
-    filters: {
-        fechaformato(data) {
-            return moment(data).format("LL");
-        },
-        vertipo(data) {
-            var edad = moment(
-                moment(data).format("YYYYMMDD"),
-                "YYYYMMDD"
-            ).fromNow();
-            var element = edad.match(/\d+/);
-            if (element < 18) {
-                var tipo = "Niño";
-            } else {
-                var tipo = "Adulto";
-            }
-            return tipo;
         }
     },
     methods: {
@@ -998,7 +346,6 @@ export default {
             axios
                 .get("/mascotas/listar?buscar=" + buscar + "&page=" + pagina)
                 .then(res => {
-                    console.log(res.data.datos.data);
                     this.recupera = res.data.datos.data;
                     this.paginacion = res.data.paginacion;
                 })
@@ -1007,100 +354,66 @@ export default {
                 });
         },
         ver(tr) {
-            this.titulomodal = "Agregar Paciente";
+            this.titulomodal = "Ficha Animal de " + tr.nombre;
             this.abrirmodal = 1;
             this.tipomodal = 1;
+            this.form = tr;
         },
         cerrar() {
             this.abrirmodal = 0;
         },
-        //CRUD
-        guardar() {
-            if (this.validar()) {
-                return;
-            }
-            axios
-                .post("/pacientes/guardar", {
-                    TTJV_PersonaFhr: this.f_persona,
-                    TTJV_PersonaTipoIden: this.tipo_identificacion,
-                    TTJV_PersonaIdentificacion: this.identificacion,
-                    TTJV_PersonaApePaterno: this.ape_paterno,
-                    TTJV_PersonaApeMaterno: this.ape_materno,
-                    TTJV_PersonaNombres: this.nombre,
-                    TTJV_PersonaFchNacimiento: this.fecha_nacimiento,
-                    TTJV_PersonaSexo: this.sexo,
-                    TTJV_PersonaOrientacionSexual: this.orient_sex,
-                    TTJV_PersonaEstadoCivil: this.est_civil,
-                    TTJV_PersonaNacionalidad: this.nacionalidad,
-                    TTJV_PersonaDiscapacidad: this.discapacidad,
-                    TTJV_PersonaAlergia: this.alergias,
-                    TTJV_PersonaInterquirugicas: this.intervenciones,
-                    TTJV_PersonaVacuCompletas: this.vacunas,
-                    TTJV_PersonaTipoSangre: this.tipo_sangre,
-                    TTJV_PersonaOcupacion: this.ocupacion,
-                    TTJV_PersonaReligion: this.religion,
-                    TTJV_PersonaDireccion: this.direccion,
-                    TTJV_PersonaTelefono: this.telef_dom,
-                    TTJV_PersonaTelefonoTrabajo: this.telef_trab,
-                    TTJV_PersonaCelular: this.telef_cell,
-                    TTJV_PersonaEmail: this.email,
-                    TTJV_PersonaNombreFamiliar: this.nom_fam,
-                    TTJV_PersonaApellidoFamiliar: this.ape_fam,
-                    TTJV_PersonaDireccionFamiliar: this.direc_fam,
-                    TTJV_PersonaCelularFamiliar: this.cel_fam,
-                    TTJV_PersonaEstado: this.estado,
-                    TTJV_PersonaEtnia: this.etnia,
-                    TTJV_PersonaGrupoEtario: this.grup_etario,
-                    TTJV_PersonaProvincia: this.provincia,
-                    TTJV_PersonaCanton: this.canton
-                })
-                .then(res => {
-                    this.cerrar();
-                    this.listar(1, this.buscar);
-                    alertify.success("Registro Guardado");
-                })
-                .catch(err => {
-                    console.log(err);
-                });
+        adoptar(id){
+            console.log(id);
+            this.$router.push("/adopciones/"+id);
         },
-        guardaremergencia() {
-            axios
-                .post("/pacientes/guardaremergency", {
-                    TTJV_PersonaFhr: this.f_persona,
-                    TTJV_PersonaTipoIden: "---",
-                    TTJV_PersonaIdentificacion: "9999999999",
-                    TTJV_PersonaApePaterno: "---",
-                    TTJV_PersonaNombres: "Paciente Emergencia",
-                    TTJV_PersonaFchNacimiento: moment().format("YYYY-MM-DD"),
-                    TTJV_PersonaSexo: "---",
-                    TTJV_PersonaEstadoCivil: "---",
-                    TTJV_PersonaAlergia: "No comprobado Emergencia",
-                    TTJV_PersonaInterquirugicas: "No comprobado Emergencia",
-                    TTJV_PersonaVacuCompletas: "--",
-                    TTJV_PersonaTipoSangre: "---",
-                    TTJV_PersonaOcupacion: "---",
-                    TTJV_PersonaDireccion: "---",
-                    TTJV_PersonaTelefono: "---"
-                })
-                .then(res => {
-                    this.cerrar();
-                    this.listar(1, this.buscar);
-                    alertify.success("Registro de Emergencia Guardado");
-                })
-                .catch(err => {
-                    console.log(err);
-                });
+        albergue(){
+            axios.get("/albergue/listar/general").then( ({data}) => {
+                this.albergue_lista = data;
+            }).catch( error => {
+                console.log(error);
+            });
         }
     },
     mounted() {
         this.listar(1, this.buscar);
+        this.albergue();
     }
 };
 </script>
 <style>
-@media (min-width: 1024px) {
-    .modal-lg {
-        max-width: 70%;
+    .imagen-tabla{
+        width: 50px;
+        border-radius: 69px;
+        height: 50px;
+        border: 1px solid #3e3e3e;
     }
-}
+    .imagen-td{
+        padding: 5px 0!important;
+        margin: 0px;
+        width: 60px;
+    }
+    td{
+        vertical-align: middle!important;
+    }
+    .acciones{
+        width: 60px;
+    }
+    .imagen-modal{
+        width: 100%;
+        max-height: 325px;
+        border-radius: 8px;
+        border:1px solid #3e3e3e;
+        box-shadow: 7px 6px 10px;
+    }
+    label {
+        display: inline-block;
+        margin-bottom: .1rem!important;
+    }
+    .text-verde {
+        color: #28a745!important;
+    }
+    .estado-general{
+        text-transform: capitalize;
+        color:orange;
+    }
 </style>

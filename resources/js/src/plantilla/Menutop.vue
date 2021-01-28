@@ -32,7 +32,7 @@
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <img src="imagenes/profile.png" alt="user" class="profile-pic" />
+                <img src="/imagenes/profile.png" alt="user" class="profile-pic" />
               </a>
               <div class="dropdown-menu dropdown-menu-right scale-up">
                 <ul class="dropdown-user">

@@ -28,6 +28,12 @@ const router = new Router({
                         import ('./src/componentes/Adopciones.vue')
                 },
                 {
+                    path: '/adopciones/:id',
+                    name: 'adopciones_id',
+                    component: () =>
+                        import ('./src/componentes/Adopciones.vue')
+                },
+                {
                     path: '/gestionadopciones',
                     name: 'gestionadopciones',
                     component: () =>

@@ -71939,6 +71939,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
         return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./src/componentes/Adopciones.vue */ "./resources/js/src/componentes/Adopciones.vue"));
       }
     }, {
+      path: '/adopciones/:id',
+      name: 'adopciones_id',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./src/componentes/Adopciones.vue */ "./resources/js/src/componentes/Adopciones.vue"));
+      }
+    }, {
       path: '/gestionadopciones',
       name: 'gestionadopciones',
       component: function component() {

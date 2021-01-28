@@ -2,7 +2,7 @@
     <aside class="left-sidebar">
       <div class="scroll-sidebar">
         <div class="user-profile" style="background: url(imagenes/user-info.jpg) no-repeat;">
-            <div class="profile-img"> <img src="imagenes/profile.png" alt="user" /> </div>
+            <div class="profile-img"> <img src="/imagenes/profile.png" alt="user" /> </div>
             <div class="profile-text"> <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">{{nombre_usuario}}</a>
                 <div class="dropdown-menu animated flipInY">
                     <div class="dropdown-divider"></div> <a href="/logout" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i> Cerrar sesión</a>
