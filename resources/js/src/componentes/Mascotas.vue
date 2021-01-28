@@ -1037,8 +1037,9 @@ export default {
         //metodos cambiantes
         listar(pagina, buscar) {
             axios
-                .get("/persona/listar?buscar=" + buscar + "&page=" + pagina)
+                .get("/mascotas/listar?buscar=" + buscar + "&page=" + pagina)
                 .then(res => {
+                    console.log(res.data.datos.data);
                     this.recupera = res.data.datos.data;
                     this.paginacion = res.data.paginacion;
                 })
@@ -1046,30 +1047,7 @@ export default {
                     console.log(err);
                 });
         },
-        listetnia() {
-            var url = "/persona/listetnia";
-            axios.get(url).then(res => {
-                this.contetnia = res.data;
-            });
-        },
-        listgrupeta() {
-            var url = "/persona/listgrupetario";
-            axios.get(url).then(res => {
-                this.contetario = res.data;
-            });
-        },
-        listprov() {
-            var url = "/persona/listprovincia";
-            axios.get(url).then(res => {
-                this.contprovincia = res.data;
-            });
-        },
-        listcanton(cod_provincia) {
-            var url = "/persona/listcanton/" + cod_provincia;
-            axios.get(url).then(res => {
-                this.contcanton = res.data;
-            });
-        },
+
         abrir(tipo, datos) {
             switch (tipo) {
                 case "agregar": {
