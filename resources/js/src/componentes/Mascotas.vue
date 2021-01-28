@@ -32,14 +32,12 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Hist. C.</th>
-                                    <th>Identificación</th>
-                                    <th>Apellido paterno</th>
-                                    <th>Apellido materno</th>
-                                    <th>Nombres</th>
-                                    <th>Tipo</th>
-                                    <th>Categoría</th>
-                                    <th>Acciones</th>
+                                    <th>Foto</th>
+                                    <th>Nombre</th>
+                                    <th>Especie</th>
+                                    <th>Raza</th>
+                                    <th>Sexo</th>
+                                    <th>Peso</th>
                                 </tr>
                             </thead>
                             <tbody v-if="recupera.length">
@@ -47,24 +45,16 @@
                                     v-for="(tr, index) in recupera"
                                     :key="index"
                                 >
-                                    <td>{{ tr.TTJV_id_persona }}</td>
-                                    <td>{{ tr.TTJV_PersonaIdentificacion }}</td>
-                                    <td>{{ tr.TTJV_PersonaApePaterno }}</td>
-                                    <td>{{ tr.TTJV_PersonaApeMaterno }}</td>
-                                    <td>{{ tr.TTJV_PersonaNombres }}</td>
-                                    <td>{{ tr.TTJV_PersonaSexo }}</td>
-                                    <td>{{ tr.TTJV_PersonaFchNacimiento | vertipo }}</td>
+                                    <td>{{ tr.imagen }}</td>
+                                    <td>{{ tr.nombre }}</td>
+                                    <td>{{ tr.especie }}</td>
+                                    <td>{{ tr.raza }}</td>
+                                    <td>{{ tr.sexo }}</td>
+                                    <td>{{ tr.peso }}</td>
                                     <td class="pointer acciones">
                                         <i
                                             class="fa fa-eye"
                                             @click="abrir('editar', tr)"
-                                        ></i>
-                                        |
-                                        <i
-                                            class="fa fa-trash"
-                                            @click="
-                                                eliminar(tr.TTJV_id_persona)
-                                            "
                                         ></i>
                                     </td>
                                 </tr>
@@ -1226,24 +1216,6 @@ export default {
                 .catch(err => {
                     console.log(err);
                 });
-        },
-        eliminar(id) {
-            Swal.fire({
-                title: "Eliminar registro?",
-                text: "Esta seguro de eliminar este registro?",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                cancelButtonText: "Cancelar",
-                confirmButtonText: "Eliminar"
-            }).then(result => {
-                if (result.value) {
-                    axios.delete("/pacientes/eliminar/" + id);
-                    this.listar(1, this.buscar);
-                    alertify.success("Registro Eliminado");
-                }
-            });
         },
         //Validaciones
         validar() {
