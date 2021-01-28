@@ -11,7 +11,7 @@
  Target Server Version : 100408
  File Encoding         : 65001
 
- Date: 24/01/2021 01:36:13
+ Date: 28/01/2021 00:35:18
 */
 
 SET NAMES utf8mb4;
@@ -92,7 +92,12 @@ CREATE TABLE `albergue`  (
   `created_at` datetime(0) NULL DEFAULT NULL,
   `updated_at` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id_albergue`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of albergue
+-- ----------------------------
+INSERT INTO `albergue` VALUES (1, 'Proteccion Animal Ecuador', 'N34-85 y Rumipamba', '1', '3319522', NULL, 'La fundación Protección Animal Ecuador, PAE, se fundó y legalizó en Quito el 3 de agosto de 1984 ante el Ministerio de Inclusión Social y Económica bajo la figura original de asociación y posteriormente reformada a fundación el 2 de marzo de 2005 con Acue', 'Promovemos la protección y el bienestar de los animales mediante acciones directas y la concienciación de la comunidad en el respeto que merecen y se debe tener hacia las demás especies.', NULL, '2021-01-28 00:18:53', '2021-01-28 00:18:55');
 
 -- ----------------------------
 -- Table structure for mascota
@@ -119,7 +124,12 @@ CREATE TABLE `mascota`  (
   PRIMARY KEY (`id_mascota`) USING BTREE,
   INDEX `fk_mascota_albergue`(`id_albergue`) USING BTREE,
   CONSTRAINT `fk_mascota_albergue` FOREIGN KEY (`id_albergue`) REFERENCES `albergue` (`id_albergue`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of mascota
+-- ----------------------------
+INSERT INTO `mascota` VALUES (1, 'Pochi', 'canina', 'Pastor Aleman', '3 años', 'macho', '80 lb', '65 cm', 'negro y fuego', 'No', 'Sociable', 'Buen estado de Salud          No necesita cuidados especiales', NULL, 'disponible', '2021-01-28 00:16:57', '2021-01-28 00:17:02', 1);
 
 -- ----------------------------
 -- Table structure for rol

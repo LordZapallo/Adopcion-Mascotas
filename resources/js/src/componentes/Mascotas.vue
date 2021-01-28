@@ -5,41 +5,6 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-12 justify-content-end">
-                            <div class="btn-group ml-2" style="float: right;">
-                                <button
-                                    type="button"
-                                    class="btn btn-primary "
-                                    @click="abrir('agregar')"
-                                >
-                                    Agregar Pacientes
-                                </button>
-                                <button
-                                    type="button"
-                                    class="btn btn-outline-primary"
-                                    data-toggle="tooltip"
-                                    data-placement="top"
-                                    title="Exportar PDF"
-                                    @click="pdf()"
-                                >
-                                    <i
-                                        style="color:#d40a0a"
-                                        class="fas fa-file-pdf"
-                                    ></i>
-                                </button>
-                                <button
-                                    type="button"
-                                    class="btn btn-outline-primary"
-                                    data-toggle="tooltip"
-                                    data-placement="top"
-                                    title="Exportar Excel"
-                                    @click="excel()"
-                                >
-                                    <i
-                                        style="color:#107c42;"
-                                        class="fas fa-file-excel"
-                                    ></i>
-                                </button>
-                            </div>
                             <div
                                 class="input-group mb-3"
                                 style="width: 20em;float: right;"
@@ -91,7 +56,7 @@
                                     <td>{{ tr.TTJV_PersonaFchNacimiento | vertipo }}</td>
                                     <td class="pointer acciones">
                                         <i
-                                            class="fa fa-edit"
+                                            class="fa fa-eye"
                                             @click="abrir('editar', tr)"
                                         ></i>
                                         |
