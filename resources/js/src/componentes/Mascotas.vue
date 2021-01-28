@@ -54,7 +54,7 @@
                                     <td class="pointer acciones">
                                         <i
                                             class="fa fa-eye"
-                                            @click="abrir('editar', tr)"
+                                            @click="ver(tr)"
                                         ></i>
                                     </td>
                                 </tr>
@@ -184,7 +184,8 @@
                                             type="text"
                                             class="form-control"
                                             v-model="identificacion"
-                                            onkeypress="return solonumeros(event)" maxlength="10"
+                                            onkeypress="return solonumeros(event)"
+                                            maxlength="10"
                                         />
                                         <div v-if="!identificacion">
                                             <div
@@ -292,12 +293,8 @@
                                             <option value="Hombre"
                                                 >Hombre</option
                                             >
-                                            <option value="Mujer"
-                                                >Mujer</option
-                                            >
-                                                <option value="Otros"
-                                                >Otros</option
-                                            >
+                                            <option value="Mujer">Mujer</option>
+                                            <option value="Otros">Otros</option>
                                         </select>
                                         <div v-if="!sexo">
                                             <div
@@ -564,7 +561,8 @@
                                             type="text"
                                             class="form-control"
                                             v-model="telef_dom"
-                                            onkeypress="return solonumeros(event)" maxlength="15"
+                                            onkeypress="return solonumeros(event)"
+                                            maxlength="15"
                                         />
                                         <div v-if="!telef_dom">
                                             <div
@@ -587,7 +585,8 @@
                                             type="text"
                                             class="form-control"
                                             v-model="telef_trab"
-                                            onkeypress="return solonumeros(event)" maxlength="15"
+                                            onkeypress="return solonumeros(event)"
+                                            maxlength="15"
                                         />
                                     </div>
                                 </div>
@@ -600,7 +599,8 @@
                                             type="text"
                                             class="form-control"
                                             v-model="telef_cell"
-                                            onkeypress="return solonumeros(event)" maxlength="10"
+                                            onkeypress="return solonumeros(event)"
+                                            maxlength="10"
                                         />
                                     </div>
                                 </div>
@@ -664,7 +664,8 @@
                                             type="text"
                                             class="form-control"
                                             v-model="cel_fam"
-                                            onkeypress="return solonumeros(event)" maxlength="10"
+                                            onkeypress="return solonumeros(event)"
+                                            maxlength="10"
                                         />
                                     </div>
                                 </div>
@@ -972,12 +973,15 @@ export default {
         fechaformato(data) {
             return moment(data).format("LL");
         },
-        vertipo(data){
-            var edad = moment(moment(data).format("YYYYMMDD"), "YYYYMMDD").fromNow();
-            var element   = edad.match(/\d+/);
-            if(element<18){
+        vertipo(data) {
+            var edad = moment(
+                moment(data).format("YYYYMMDD"),
+                "YYYYMMDD"
+            ).fromNow();
+            var element = edad.match(/\d+/);
+            if (element < 18) {
                 var tipo = "Niño";
-            }else{
+            } else {
                 var tipo = "Adulto";
             }
             return tipo;
@@ -1002,90 +1006,10 @@ export default {
                     console.log(err);
                 });
         },
-
-        abrir(tipo, datos) {
-            switch (tipo) {
-                case "agregar": {
-                    this.titulomodal = "Agregar Paciente";
-                    this.abrirmodal = 1;
-                    this.tipomodal = 1;
-                    this.id = null;
-                    //opcionales
-                    this.tipo_identificacion = "";
-                    this.identificacion = "";
-                    this.ape_paterno = "";
-                    this.ape_materno = "";
-                    this.nombre = "";
-                    this.fecha_nacimiento = "";
-                    this.sexo = "";
-                    this.orient_sex = "";
-                    this.est_civil = "";
-                    this.nacionalidad = "";
-                    this.discapacidad = "";
-                    this.alergias = "";
-                    this.intervenciones = "";
-                    this.vacunas = "";
-                    this.tipo_sangre = "";
-                    this.ocupacion = "";
-                    this.religion = "";
-                    this.direccion = "";
-                    this.telef_dom = "";
-                    this.telef_trab = "";
-                    this.telef_cell = "";
-                    this.email = "";
-                    this.nom_fam = "";
-                    this.ape_fam = "";
-                    this.direc_fam = "";
-                    this.cel_fam = "";
-                    this.estado = "";
-                    this.etnia = "";
-                    this.grup_etario = "";
-                    this.provincia = "";
-                    this.canton = "";
-                    break;
-                }
-                case "editar": {
-                    this.titulomodal = "Editar Paciente";
-                    this.abrirmodal = 1;
-                    this.tipomodal = 2;
-                    //opcionales
-                    this.id = datos.TTJV_id_persona;
-                    this.f_persona = datos.TTJV_PersonaFhr;
-                    this.tipo_identificacion = datos.TTJV_PersonaTipoIden;
-                    this.identificacion = datos.TTJV_PersonaIdentificacion;
-                    this.ape_paterno = datos.TTJV_PersonaApePaterno;
-                    this.ape_materno = datos.TTJV_PersonaApeMaterno;
-                    this.nombre = datos.TTJV_PersonaNombres;
-                    this.fecha_nacimiento = datos.TTJV_PersonaFchNacimiento;
-                    this.sexo = datos.TTJV_PersonaSexo;
-                    this.orient_sex = datos.TTJV_PersonaOrientacionSexual;
-                    this.est_civil = datos.TTJV_PersonaEstadoCivil;
-                    this.nacionalidad = datos.TTJV_PersonaNacionalidad;
-                    this.discapacidad = datos.TTJV_PersonaDiscapacidad;
-                    this.alergias = datos.TTJV_PersonaAlergia;
-                    this.intervenciones = datos.TTJV_PersonaInterquirugicas;
-                    this.vacunas = datos.TTJV_PersonaVacuCompletas;
-                    this.tipo_sangre = datos.TTJV_PersonaTipoSangre;
-                    this.ocupacion = datos.TTJV_PersonaOcupacion;
-                    this.religion = datos.TTJV_PersonaReligion;
-                    this.direccion = datos.TTJV_PersonaDireccion;
-                    this.telef_dom = datos.TTJV_PersonaTelefono;
-                    this.telef_trab = datos.TTJV_PersonaTelefonoTrabajo;
-                    this.telef_cell = datos.TTJV_PersonaCelular;
-                    this.email = datos.TTJV_PersonaEmail;
-                    this.nom_fam = datos.TTJV_PersonaNombreFamiliar;
-                    this.ape_fam = datos.TTJV_PersonaApellidoFamiliar;
-                    this.direc_fam = datos.TTJV_PersonaDireccionFamiliar;
-                    this.cel_fam = datos.TTJV_PersonaCelularFamiliar;
-                    this.estado = datos.TTJV_PersonaEstado;
-                    this.etnia = datos.TTJV_PersonaEtnia;
-                    this.grup_etario = datos.TTJV_PersonaGrupoEtario;
-                    this.provincia = datos.TTJV_PersonaProvincia;
-                    this.listcanton(datos.TTJV_PersonaProvincia);
-                    this.canton = datos.TTJV_PersonaCanton;
-                    break;
-                }
-            }
+        ver(tr) {
+            this.titulomodal = "Agregar Paciente";
+            this.abrirmodal = 1;
+            this.tipomodal = 1;
         },
         cerrar() {
             this.abrirmodal = 0;
@@ -1139,56 +1063,6 @@ export default {
                     console.log(err);
                 });
         },
-        editar() {
-            if (this.validar()) {
-                return;
-            }
-            axios
-                .post("/pacientes/editar", {
-                    TTJV_id_persona: this.id,
-                    TTJV_PersonaFhr: this.f_persona,
-                    TTJV_PersonaTipoIden: this.tipo_identificacion,
-                    TTJV_PersonaIdentificacion: this.identificacion,
-                    TTJV_PersonaApePaterno: this.ape_paterno,
-                    TTJV_PersonaApeMaterno: this.ape_materno,
-                    TTJV_PersonaNombres: this.nombre,
-                    TTJV_PersonaFchNacimiento: this.fecha_nacimiento,
-                    TTJV_PersonaSexo: this.sexo,
-                    TTJV_PersonaOrientacionSexual: this.orient_sex,
-                    TTJV_PersonaEstadoCivil: this.est_civil,
-                    TTJV_PersonaNacionalidad: this.nacionalidad,
-                    TTJV_PersonaDiscapacidad: this.discapacidad,
-                    TTJV_PersonaAlergia: this.alergias,
-                    TTJV_PersonaInterquirugicas: this.intervenciones,
-                    TTJV_PersonaVacuCompletas: this.vacunas,
-                    TTJV_PersonaTipoSangre: this.tipo_sangre,
-                    TTJV_PersonaOcupacion: this.ocupacion,
-                    TTJV_PersonaReligion: this.religion,
-                    TTJV_PersonaDireccion: this.direccion,
-                    TTJV_PersonaTelefono: this.telef_dom,
-                    TTJV_PersonaTelefonoTrabajo: this.telef_trab,
-                    TTJV_PersonaCelular: this.telef_cell,
-                    TTJV_PersonaEmail: this.email,
-                    TTJV_PersonaNombreFamiliar: this.nom_fam,
-                    TTJV_PersonaApellidoFamiliar: this.ape_fam,
-                    TTJV_PersonaDireccionFamiliar: this.direc_fam,
-                    TTJV_PersonaCelularFamiliar: this.cel_fam,
-                    TTJV_PersonaEstado: this.estado,
-                    TTJV_PersonaEtnia: this.etnia,
-                    TTJV_PersonaGrupoEtario: this.grup_etario,
-                    TTJV_PersonaProvincia: this.provincia,
-                    TTJV_PersonaCanton: this.canton
-                })
-                .then(res => {
-                    console.log(res.data);
-                    this.cerrar();
-                    this.listar(1, this.buscar);
-                    alertify.success("Registro Editado");
-                })
-                .catch(err => {
-                    console.log(err);
-                });
-        },
         guardaremergencia() {
             axios
                 .post("/pacientes/guardaremergency", {
@@ -1216,111 +1090,6 @@ export default {
                 .catch(err => {
                     console.log(err);
                 });
-        },
-        //Validaciones
-        validar() {
-            this.error = 0;
-            this.errortipo_identificacion = [];
-            this.erroridentificacion = [];
-            this.errorape_paterno = [];
-            this.errornombre = [];
-            this.errorfecha_nacimiento = [];
-            this.errorsexo = [];
-            this.errorest_civil = [];
-            this.erroralergias = [];
-            this.errorintervenciones = [];
-            this.errorvacunas = [];
-            this.errortipo_sangre = [];
-            this.errorocupacion = [];
-            this.errordireccion = [];
-            this.errortelef_dom = [];
-            this.erroretnia = [];
-            this.errorgrup_etario = [];
-            this.errorprovincia = [];
-            this.errorcanton = [];
-
-            if (!this.tipo_identificacion) {
-                this.errortipo_identificacion.push("Campo obligatorio");
-                this.error = 1;
-            }
-            if (!this.identificacion) {
-                this.erroridentificacion.push("Campo obligatorio");
-                this.error = 1;
-            }
-            if (!this.ape_paterno) {
-                this.errorape_paterno.push("Campo obligatorio");
-                this.error = 1;
-            }
-            if (!this.nombre) {
-                this.errornombre.push("Campo obligatorio");
-                this.error = 1;
-            }
-            if (!this.fecha_nacimiento) {
-                this.errorfecha_nacimiento.push("Campo obligatorio");
-                this.error = 1;
-            }
-            if (!this.sexo) {
-                this.errorsexo.push("Campo obligatorio");
-                this.error = 1;
-            }
-            if (!this.est_civil) {
-                this.errorest_civil.push("Campo obligatorio");
-                this.error = 1;
-            }
-            if (!this.alergias) {
-                this.erroralergias.push("Campo obligatorio");
-                this.error = 1;
-            }
-            if (!this.intervenciones) {
-                this.errorintervenciones.push("Campo obligatorio");
-                this.error = 1;
-            }
-            if (!this.vacunas) {
-                this.errorvacunas.push("Campo obligatorio");
-                this.error = 1;
-            }
-            if (!this.tipo_sangre) {
-                this.errortipo_sangre.push("Campo obligatorio");
-                this.error = 1;
-            }
-            if (!this.ocupacion) {
-                this.errorocupacion.push("Campo obligatorio");
-                this.error = 1;
-            }
-            if (!this.direccion) {
-                this.errordireccion.push("Campo obligatorio");
-                this.error = 1;
-            }
-            if (!this.telef_dom) {
-                this.errortelef_dom.push("Campo obligatorio");
-                this.error = 1;
-            }
-            if (!this.etnia) {
-                this.erroretnia.push("Campo obligatorio");
-                this.error = 1;
-            }
-            if (!this.grup_etario) {
-                this.errorgrup_etario.push("Campo obligatorio");
-                this.error = 1;
-            }
-            if (!this.provincia) {
-                this.errorprovincia.push("Campo obligatorio");
-                this.error = 1;
-            }
-            if (!this.canton) {
-                this.errorcanton.push("Campo obligatorio");
-                this.error = 1;
-            }
-
-            return this.error;
-        },
-        //funciones export archivos
-        excel() {
-            window.open("/persona/excel", "_top");
-            //this.$router.push("/persona/excel");
-        },
-        pdf() {
-            window.open("/persona/pdf", "_top");
         }
     },
     mounted() {
