@@ -46,7 +46,7 @@
                                     v-for="(tr, index) in recupera"
                                     :key="index"
                                 >
-                                    <td class="imagen-td">
+                                    <td class="imagen-td cursor-pointer" @click="verimagen('/imagenes/mascotas/'+tr.imagen, tr.nombre)">
                                         <img :src="'/imagenes/mascotas/'+tr.imagen" class="imagen-tabla">
                                     </td>
                                     <td>{{ tr.nombre }}</td>
@@ -258,6 +258,24 @@
                 </div>
             </div>
         </div>
+        <div class="modal" :class="{ abrirmodal: abrirmodalimagen }">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"> Foto de <b>{{ vista_imagen_nombre }}</b> </h5>
+                        <button type="button" class="close" @click="cerrar()"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <img :src="vista_imagen" class="w-100">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" @click="cerrar()">
+                            Cerrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -307,7 +325,10 @@ export default {
                 id_albergue: null,
                 imagen: null,
             },
-            albergue_lista:[]
+            albergue_lista:[],
+            vista_imagen: '',
+            abrirmodalimagen: false,
+            vista_imagen_nombre: ''
         };
     },
     computed: {
@@ -360,7 +381,8 @@ export default {
             this.form = tr;
         },
         cerrar() {
-            this.abrirmodal = 0;
+            this.abrirmodal = false;
+            this.abrirmodalimagen = false;
         },
         adoptar(id){
             console.log(id);
@@ -372,6 +394,11 @@ export default {
             }).catch( error => {
                 console.log(error);
             });
+        },
+        verimagen(imagen, nombre){
+            this.vista_imagen = imagen;
+            this.abrirmodalimagen = true;
+            this.vista_imagen_nombre = nombre;
         }
     },
     mounted() {

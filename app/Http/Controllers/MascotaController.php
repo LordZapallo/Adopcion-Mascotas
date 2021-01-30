@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Mascota;
 use App\Models\Albergue;
+use App\Models\Adopcion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -39,11 +40,16 @@ class MascotaController extends Controller
     }
     public function listarficha(Request $request)
     {
-        $mascota = Mascota::select("*")->where("id_mascota", "=", $request->id_mascota)->get();
-        $albergue =  Albergue::select("*")->where("id_albergue", "=", $mascota[0]->id_albergue)->get();
+        $mascota = Mascota::select("*")->where("id_mascota", "=", $request->id_mascota)->first();
+        $albergue =  Albergue::select("*")->where("id_albergue", "=", $mascota->id_albergue)->first();
+        $ficha = [];
+        if(isset($request->id_adopcion)){
+            $ficha =  Adopcion::select("*")->where("id_adopcion", "=", $request->id_adopcion)->first();
+        }
         return [
-            'mascota' => $mascota[0],
-            "albergue" => $albergue[0]
+            'mascota' => $mascota,
+            "albergue" => $albergue,
+            "ficha" => $ficha
         ];
     }
     public function guardar(Request $request)

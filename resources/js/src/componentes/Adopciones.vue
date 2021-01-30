@@ -248,7 +248,7 @@
                                     />
                                 </div>
                             </div>
-                            <vs-divider class="divider">
+                            <vs-divider class="divider mt-4 mb-4 bold">
                                 Referencia Personal
                             </vs-divider>
                             <div class="col-xl-4 col-lg-4 col-md-4">
@@ -289,19 +289,29 @@
                                     />
                                 </div>
                             </div>
-                            <vs-divider class="divider">
+                            <vs-divider class="divider mt-4 mb-4 bold">
                                 Información de Hogar
                             </vs-divider>
                             <div class="col-xl-3 col-lg-3 col-md-3">
                                 <div class="form-group">
                                     <label class="label-input"
-                                        >Número de Familiares:</label
+                                        >N° Familiares:</label
                                     >
                                     <input
                                         type="text"
                                         class="form-control"
                                         v-model="ficha.familiares_numero"
                                     />
+                                    <div v-if="!ficha.familiares_numero">
+                                        <div
+                                            class="invalid-feedback"
+                                            style="display:block;"
+                                            v-for="err in errorfamiliares_numero"
+                                            :key="err"
+                                        >
+                                            {{ err }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-xl-9 col-lg-9 col-md-9">
@@ -380,7 +390,7 @@
                                     v-model="ficha.porque_adoptar"
                                 ></textarea>
                             </div>
-                            <vs-divider class="divider">
+                            <vs-divider class="divider mt-4 mb-4 bold">
                                 Cuidados de Mascota
                             </vs-divider>
                             <div class="col-xl-3 col-lg-3 col-md-3">
@@ -426,66 +436,142 @@
                                     />
                                 </div>
                             </div>
-                            <div
-                                class="row form-material"
-                                style="margin:auto; margin-bottom: 2%;"
-                            >
+                            <div class="col-xl-4 col-lg-4 col-md-12">
                                 <div class="col-xl-10 col-lg-10 col-md-10">
                                     <label class="label-input"
-                                        >¿Acepta a tener visitas de
+                                        >¿Acepta tener visitas de
                                         supervisión?</label
                                     >
                                 </div>
-                                <div class="col-xl-2 col-lg-2 col-md-2">
-                                    <select
-                                        class="form-control"
-                                        v-model="ficha.tipo_comida_mascota"
-                                    >
-                                        <option value="Si">Si</option>
-                                        <option value="No">No</option>
-                                    </select>
+                                <div class="col-xl-12 col-lg-12 col-md-12">
+                                    <div class="row">
+                                        <div class="form-check">
+                                            <input
+                                                class="form-check-input"
+                                                type="radio"
+                                                name="visita_periodica"
+                                                id="visita_periodica_si"
+                                                value="Si"
+                                                v-model="ficha.visita_periodica"
+                                            />
+                                            <label
+                                                class="form-check-label"
+                                                for="visita_periodica_si"
+                                            >
+                                                Si
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input
+                                                class="form-check-input"
+                                                type="radio"
+                                                name="visita_periodica"
+                                                id="visita_periodica_no"
+                                                value="No"
+                                                v-model="ficha.visita_periodica"
+                                            />
+                                            <label
+                                                class="form-check-label"
+                                                for="visita_periodica_no"
+                                            >
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div
-                                class="row form-material"
-                                style="margin:auto; margin-bottom: 2%;"
-                            >
+                            <div class="col-xl-4 col-lg-4 col-md-12">
                                 <div class="col-xl-10 col-lg-10 col-md-10">
                                     <label class="label-input"
                                         >¿Planea Esterilizar a su
                                         mascota?</label
                                     >
                                 </div>
-                                <div class="col-xl-2 col-lg-2 col-md-2">
-                                    <select
-                                        class="form-control"
-                                        v-model="ficha.esterilizacion"
-                                    >
-                                        <option value="Si">Si</option>
-                                        <option value="No">No</option>
-                                    </select>
+                                <div class="col-xl-12 col-lg-12 col-md-12">
+                                    <div class="row">
+                                        <div class="form-check">
+                                            <input
+                                                class="form-check-input"
+                                                type="radio"
+                                                name="esterilizacion"
+                                                id="esterilizacion_si"
+                                                value="Si"
+                                                v-model="ficha.esterilizacion"
+                                            />
+                                            <label
+                                                class="form-check-label"
+                                                for="esterilizacion_si"
+                                            >
+                                                Si
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input
+                                                class="form-check-input"
+                                                type="radio"
+                                                name="esterilizacion"
+                                                id="esterilizacion_no"
+                                                value="No"
+                                                v-model="ficha.esterilizacion"
+                                            />
+                                            <label
+                                                class="form-check-label"
+                                                for="esterilizacion_no"
+                                            >
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div
-                                class="row form-material"
-                                style="margin:auto; margin-bottom: 2%;"
-                            >
+                            <div class="col-xl-4 col-lg-4 col-md-12">
                                 <div class="col-xl-10 col-lg-10 col-md-10">
                                     <label class="label-input"
                                         >¿La adopción será compartida?</label
                                     >
                                 </div>
-                                <div class="col-xl-2 col-lg-2 col-md-2">
-                                    <select
-                                        class="form-control"
-                                        v-model="ficha.adopcion_compartida"
-                                    >
-                                        <option value="Si">Si</option>
-                                        <option value="No">No</option>
-                                    </select>
+                                <div class="col-xl-12 col-lg-12 col-md-12">
+                                    <div class="row">
+                                        <div class="form-check">
+                                            <input
+                                                class="form-check-input"
+                                                type="radio"
+                                                name="adopcion_compartida"
+                                                id="adopcion_compartida_si"
+                                                value="Si"
+                                                v-model="
+                                                    ficha.adopcion_compartida
+                                                "
+                                            />
+                                            <label
+                                                class="form-check-label"
+                                                for="adopcion_compartida_si"
+                                            >
+                                                Si
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input
+                                                class="form-check-input"
+                                                type="radio"
+                                                name="adopcion_compartida"
+                                                id="adopcion_compartida_no"
+                                                value="No"
+                                                v-model="
+                                                    ficha.adopcion_compartida
+                                                "
+                                            />
+                                            <label
+                                                class="form-check-label"
+                                                for="adopcion_compartida_no"
+                                            >
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-xl-12 col-lg-12 col-md-12">
+                            <div class="col-xl-12 col-lg-12 col-md-12 mt-4">
                                 <label class="label-input"
                                     >Observaciones o Inquitudes
                                     Adicionales:</label
@@ -550,7 +636,9 @@ export default {
             albergue: [],
             ficha: {
                 fecha_emision: moment().format("YYYY-MM-DD"),
-                fecha_finalizacion: moment().format("YYYY-MM-DD"),
+                fecha_finalizacion: moment()
+                    .add(3, "day")
+                    .format("YYYY-MM-DD"),
                 referencia_personal_nombre: "",
                 referencia_personal_parentesco: "",
                 referencia_personal_telefono: "",
@@ -568,7 +656,9 @@ export default {
                 esterilizacion: "",
                 adopcion_compartida: "",
                 observaciones: ""
-            }
+            },
+            error: 0,
+            errorfamiliares_numero: []
         };
     },
     computed: {
@@ -641,7 +731,79 @@ export default {
                     console.log(error);
                 });
         },
-        guardar() {},
+        guardar() {
+            if (this.validar()) {
+                return;
+            }
+            console.log("hi");
+            return;
+            axios
+                .post("/adopcion/guardar", {
+                    adopcion: this.ficha,
+                    mascota: this.mascota,
+                    albergue: this.albergue
+                })
+                .then(res => {
+                    alertify.success(
+                        "Ficha de Adopción Registrada Exitosamente"
+                    );
+                    this.$router.push("/adopciones");
+                });
+        },
+        validar() {
+            this.error = 0;
+            this.errorfamiliares_numero = [];
+            this.errorsfamiliares_enfermedad = [];
+            this.errordomicilio_tipo = [];
+            this.errordomicilio_estatus = [];
+            this.errordomicilio_metros = [];
+            this.errortipo_comida_mascota = [];
+            this.errorresponsable_gastos_mascota = [];
+            this.errorgasto_estimado_mensual = [];
+            this.errorvisita_periodica = [];
+            this.erroradopcion_compartida = [];
+            if (!this.familiares_numero) {
+                this.errorfamiliares_numero.push("Campo Obligatorio");
+                this.error = 1;
+            }
+            if (!this.familiares_enfermedad) {
+                this.errorsfamiliares_enfermedad.push("Campo Obligatorio");
+                this.error = 1;
+            }
+            if (!this.domicilio_tipo) {
+                this.errordomicilio_tipo.push("Campo Obligatorio");
+                this.error = 1;
+            }
+            if (!this.domicilio_estatus) {
+                this.errordomicilio_estatus.push("Campo Obligatorio");
+                this.error = 1;
+            }
+            if (!this.domicilio_metros) {
+                this.errordomicilio_metros.push("Campo Obligatorio");
+                this.error = 1;
+            }
+            if (!this.tipo_comida_mascota) {
+                this.errortipo_comida_mascota.push("Campo Obligatorio");
+                this.error = 1;
+            }
+            if (!this.responsable_gastos_mascota) {
+                this.errorresponsable_gastos_mascota.push("Campo Obligatorio");
+                this.error = 1;
+            }
+            if (!this.gasto_estimado_mensual) {
+                this.errorgasto_estimado_mensual.push("Campo Obligatorio");
+                this.error = 1;
+            }
+            if (!this.visita_periodica) {
+                this.errorvisita_periodica.push("Campo Obligatorio");
+                this.error = 1;
+            }
+            if (!this.adopcion_compartida) {
+                this.erroradopcion_compartida.push("Campo Obligatorio");
+                this.error = 1;
+            }
+            return this.error;
+        },
         cerrar() {
             this.modal.estado = false;
         },
@@ -665,7 +827,6 @@ export default {
     padding: none;
     color: none;
 }
-
 .label-input {
     margin-bottom: auto;
 }
@@ -683,5 +844,8 @@ export default {
     border: 1px solid #3e3e3e;
     margin-bottom: 4%;
     margin-top: -3%;
+}
+.bold {
+    font-weight: bold;
 }
 </style>

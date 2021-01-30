@@ -17,7 +17,8 @@ Route::get('/ficha/listar', 'MascotaController@listarficha');
 Route::get('/albergue/listar/general', 'AlbergueController@listar_general');
 //adopcion
 Route::get('/adopcion/listar', 'AdopcionController@listar');
-
+Route::post('/adopcion/guardar', 'AdopcionController@guardar');
+Route::post('/adopcion/estado', 'AdopcionController@estado');
 
 
 //CRUD Usuarios
