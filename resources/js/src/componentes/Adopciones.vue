@@ -325,6 +325,16 @@
                                         class="form-control"
                                         v-model="ficha.familiares_enfermedad"
                                     />
+                                    <div v-if="!ficha.familiares_enfermedad">
+                                        <div
+                                            class="invalid-feedback"
+                                            style="display:block;"
+                                            v-for="err in errorfamiliares_enfermedad"
+                                            :key="err"
+                                        >
+                                            {{ err }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4">
@@ -341,6 +351,16 @@
                                             >Departamento</option
                                         ><option value="Otro">Otro</option>
                                     </select>
+                                    <div v-if="!ficha.domicilio_tipo">
+                                        <div
+                                            class="invalid-feedback"
+                                            style="display:block;"
+                                            v-for="err in errordomicilio_tipo"
+                                            :key="err"
+                                        >
+                                            {{ err }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4">
@@ -358,6 +378,16 @@
                                         >
                                         <option value="Otro">Otro</option>
                                     </select>
+                                    <div v-if="!ficha.domicilio_estatus">
+                                        <div
+                                            class="invalid-feedback"
+                                            style="display:block;"
+                                            v-for="err in errordomicilio_estatus"
+                                            :key="err"
+                                        >
+                                            {{ err }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4">
@@ -378,6 +408,16 @@
                                             >+ 30</option
                                         >
                                     </select>
+                                    <div v-if="!ficha.domicilio_metros">
+                                        <div
+                                            class="invalid-feedback"
+                                            style="display:block;"
+                                            v-for="err in errordomicilio_metros"
+                                            :key="err"
+                                        >
+                                            {{ err }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12">
@@ -407,6 +447,16 @@
                                             >Croquetas</option
                                         >
                                     </select>
+                                    <div v-if="!ficha.tipo_comida_mascota">
+                                        <div
+                                            class="invalid-feedback"
+                                            style="display:block;"
+                                            v-for="err in errortipo_comida_mascota"
+                                            :key="err"
+                                        >
+                                            {{ err }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-xl-5 col-lg-5 col-md-5">
@@ -434,6 +484,16 @@
                                         class="form-control"
                                         v-model="ficha.gasto_estimado_mensual"
                                     />
+                                    <div v-if="!ficha.gasto_estimado_mensual">
+                                        <div
+                                            class="invalid-feedback"
+                                            style="display:block;"
+                                            v-for="err in errorgasto_estimado_mensual"
+                                            :key="err"
+                                        >
+                                            {{ err }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-12">
@@ -460,6 +520,16 @@
                                             >
                                                 Si
                                             </label>
+                                            <div v-if="!ficha.visita_periodica">
+                                                <div
+                                                    class="invalid-feedback"
+                                                    style="display:block;"
+                                                    v-for="err in errorvisita_periodica"
+                                                    :key="err"
+                                                >
+                                                    {{ err }}
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="form-check">
                                             <input
@@ -549,6 +619,20 @@
                                             >
                                                 Si
                                             </label>
+                                            <div
+                                                v-if="
+                                                    !ficha.adopcion_compartida
+                                                "
+                                            >
+                                                <div
+                                                    class="invalid-feedback"
+                                                    style="display:block;"
+                                                    v-for="err in erroradopcion_compartida"
+                                                    :key="err"
+                                                >
+                                                    {{ err }}
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="form-check">
                                             <input
@@ -658,7 +742,16 @@ export default {
                 observaciones: ""
             },
             error: 0,
-            errorfamiliares_numero: []
+            errorfamiliares_numero: [],
+            errorfamiliares_enfermedad: [],
+            errordomicilio_tipo: [],
+            errordomicilio_estatus: [],
+            errordomicilio_metros: [],
+            errortipo_comida_mascota: [],
+            errorresponsable_gastos_mascota: [],
+            errorgasto_estimado_mensual: [],
+            errorvisita_periodica: [],
+            erroradopcion_compartida: []
         };
     },
     computed: {
@@ -735,8 +828,6 @@ export default {
             if (this.validar()) {
                 return;
             }
-            console.log("hi");
-            return;
             axios
                 .post("/adopcion/guardar", {
                     adopcion: this.ficha,
