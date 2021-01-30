@@ -7,14 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
  Instrucciones
-<object width="425" height="350">
-  <param name="movie" value="https://www.youtube.com/watch?v=TKLimF9yoJ8" />
-  <param name="wmode" value="transparent" />
-  <embed src="https://www.youtube.com/watch?v=TKLimF9yoJ8"
-         type="application/x-shockwave-flash"
-         wmode="transparent" width="425" height="350" />
-</object>
-
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/TKLimF9yoJ8/0.jpg)](https://www.youtube.com/watch?v=TKLimF9yoJ8)
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
