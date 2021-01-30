@@ -7,11 +7,13 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
  Instrucciones
-<video width="320" height="240" controls>
-  <source src="https://youtu.be/TKLimF9yoJ8" type="video/mp4">
-  <source src="https://youtu.be/TKLimF9yoJ8" type="video/ogg">
-Your browser does not support the video tag.
-</video>
+<object width="425" height="350">
+  <param name="movie" value="https://www.youtube.com/watch?v=TKLimF9yoJ8" />
+  <param name="wmode" value="transparent" />
+  <embed src="https://www.youtube.com/watch?v=TKLimF9yoJ8"
+         type="application/x-shockwave-flash"
+         wmode="transparent" width="425" height="350" />
+</object>
 
 ## About Laravel
 
