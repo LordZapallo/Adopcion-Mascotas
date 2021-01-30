@@ -71948,7 +71948,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '/gestionadopciones',
       name: 'gestionadopciones',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./src/componentes/GestionAdopciones.vue */ "./resources/js/src/componentes/GestionAdopciones.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ./src/componentes/GestionAdopciones.vue */ "./resources/js/src/componentes/GestionAdopciones.vue"));
       }
     }]
   }, {
