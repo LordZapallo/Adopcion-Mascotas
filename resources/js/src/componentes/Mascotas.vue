@@ -47,7 +47,7 @@
                                     :key="index"
                                 >
                                     <td class="imagen-td">
-                                        <img :src="'imagenes/mascotas/'+tr.imagen" class="imagen-tabla">
+                                        <img :src="'/imagenes/mascotas/'+tr.imagen" class="imagen-tabla">
                                     </td>
                                     <td>{{ tr.nombre }}</td>
                                     <td>{{ tr.especie }}</td>
@@ -150,7 +150,7 @@
                         <form action>
                             <div class="row form-material">
                                 <div class="col-xl-6 col-lg-6 col-md-12">
-                                    <img :src="'imagenes/mascotas/' + form.imagen" class="imagen-modal">
+                                    <img :src="'/imagenes/mascotas/' + form.imagen" class="imagen-modal">
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-12">
                                     <div class="col-xl-12 col-lg-12 col-md-12">

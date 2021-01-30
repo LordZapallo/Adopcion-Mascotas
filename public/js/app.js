@@ -71918,43 +71918,43 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: [{
     path: '',
     component: function component() {
-      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ./src/plantilla/Menu.vue */ "./resources/js/src/plantilla/Menu.vue"));
+      return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./src/plantilla/Menu.vue */ "./resources/js/src/plantilla/Menu.vue"));
     },
     children: [{
       path: '/',
       name: 'inicio',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./src/componentes/Inicio.vue */ "./resources/js/src/componentes/Inicio.vue"));
+        return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./src/componentes/Inicio.vue */ "./resources/js/src/componentes/Inicio.vue"));
       }
     }, {
       path: '/mascotas',
       name: 'mascotas',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ./src/componentes/Mascotas.vue */ "./resources/js/src/componentes/Mascotas.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./src/componentes/Mascotas.vue */ "./resources/js/src/componentes/Mascotas.vue"));
       }
     }, {
       path: '/adopciones',
       name: 'adopciones',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./src/componentes/Adopciones.vue */ "./resources/js/src/componentes/Adopciones.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ./src/componentes/Adopciones.vue */ "./resources/js/src/componentes/Adopciones.vue"));
       }
     }, {
       path: '/adopciones/:id',
       name: 'adopciones_id',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./src/componentes/Adopciones.vue */ "./resources/js/src/componentes/Adopciones.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(1)]).then(__webpack_require__.bind(null, /*! ./src/componentes/Adopciones.vue */ "./resources/js/src/componentes/Adopciones.vue"));
       }
     }, {
       path: '/gestionadopciones',
       name: 'gestionadopciones',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./src/componentes/GestionAdopciones.vue */ "./resources/js/src/componentes/GestionAdopciones.vue"));
+        return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./src/componentes/GestionAdopciones.vue */ "./resources/js/src/componentes/GestionAdopciones.vue"));
       }
     }]
   }, {
     path: "*",
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./src/componentes/404.vue */ "./resources/js/src/componentes/404.vue"));
+      return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./src/componentes/404.vue */ "./resources/js/src/componentes/404.vue"));
     }
   }]
 });

@@ -11,10 +11,12 @@ Route::get('/sesion/recuperar', 'SesionController@recuperar');
 Route::get('/sesion/roles', 'SesionController@roles');
 
 //mascota
-Route::get('/mascotas/listar', 'MascotaCOntroller@listar');
-
+Route::get('/mascotas/listar', 'MascotaController@listar');
+Route::get('/ficha/listar', 'MascotaController@listarficha');
 //albergue
 Route::get('/albergue/listar/general', 'AlbergueController@listar_general');
+//adopcion
+Route::get('/adopcion/listar', 'AdopcionController@listar');
 
 
 
