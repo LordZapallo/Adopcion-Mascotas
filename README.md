@@ -1,3 +1,4 @@
+<h2 align="center"> Sistema de Adopcion de Mascotas Rescatadas de Albergues: <h2>  
 <p align="center"><img src="https://github.com/LordZapallo/Adopcion-Mascotas/blob/main/public/imagenes/avt.png" width="400"></p>
 
 
@@ -11,7 +12,7 @@ Aplicación Web con el objetivo de facilitar a cualquier persona el proceso de a
 Autor: Michael Andrés Gómez Núñez.  <br>   Universidad: Universidad Técnoca Particular de Loja
 
 ## Detalles para Desarrolladores
-La solución está desarrollada con: Framework Lavarel – Vue.js– MySQL.<br> 
+La solución está desarrollada con: Framework Lavarel – Vue.js – MySQL.<br> 
 Para mas detalles por favor revisar Archivo: <a href="https://github.com/LordZapallo/Adopcion-Mascotas/blob/main/package.json">package.json</a>
 
 ## Licencia
