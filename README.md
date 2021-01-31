@@ -3,7 +3,7 @@
 </b>
 
 ## Video de Evidencia de Funcionamiento
-[![Everything Is AWESOME](https://img.youtube.com/vi/T8K2GCosSNQ/hqdefault.jpg)](https://youtu.be/T8K2GCosSNQ "Everything Is AWESOME")
+[![Link youtube.com](https://img.youtube.com/vi/T8K2GCosSNQ/hqdefault.jpg)](https://youtu.be/T8K2GCosSNQ "Link youtube.com")
 
 ## Sobre el Proyecto 🚀
 Aplicación Web con el objetivo de facilitar a cualquier persona el proceso de adopción de Mascotas rescatadas que viven Albergues, la aplicación gestiona todos los aspectos del proceso vía online, siendo el único paso presencial pasando el proceso exitosamente el acudir al albergue a retirar su mascota adoptada.
