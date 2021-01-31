@@ -3,7 +3,7 @@
 
 
 
-<!--[![Everything Is AWESOME](https://img.youtube.com/vi/TKLimF9yoJ8/0.jpg)](https://github.com/LordZapallo/Adopcion-Mascotas/blob/main/db/video.mkv "Everything Is AWESOME")-->
+[![Everything Is AWESOME](https://img.youtu.be/BTgcuiBkVes/0.jpg)](https://youtu.be/BTgcuiBkVes "Everything Is AWESOME")
 
 ## Sobre el Proyecto 🚀
 Aplicación Web con el objetivo de facilitar a cualquier persona el proceso de adopción de Mascotas rescatadas que viven Albergues, la aplicación gestiona todos los aspectos del proceso vía online, siendo el único paso presencial pasando el proceso exitosamente el acudir al albergue a retirar su mascota adoptada.
@@ -61,8 +61,8 @@ Laravel development server started: http://127.0.0.1:8000
 ```
 En este punto la aplicación Web estara corriendo en us servidor local.
 </b>
-## Cuentas de Usuario de Inicio de Sesion📌
-<p align="center"><img src="https://github.com/LordZapallo/Adopcion-Mascotas/blob/main/entregables/pagina-inicio.png" width="350"></p><br> 
+## Cuentas de Usuario de Inicio de Sesion 📌
+<p align="center"><img src="https://github.com/LordZapallo/Adopcion-Mascotas/blob/main/entregables/pagina-inicio.png" width="800"></p><br> 
 
 1. Usuario Supervisor:
 ```
