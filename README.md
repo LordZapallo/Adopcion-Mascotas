@@ -1,8 +1,8 @@
 # Sistema de Adopción de Mascotas Rescatadas: 
 <p align="center"><img src="https://github.com/LordZapallo/Adopcion-Mascotas/blob/main/public/imagenes/avt.png" width="400"></p>
+</b>
 
-
-
+## Video de Evidencia de Funcionamiento
 [![Everything Is AWESOME](https://img.youtube.com/vi/BTgcuiBkVes/sddefault.jpg)](https://youtu.be/BTgcuiBkVes "Everything Is AWESOME")
 
 ## Sobre el Proyecto 🚀
