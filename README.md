@@ -62,7 +62,7 @@ Laravel development server started: http://127.0.0.1:8000
 En este punto la aplicación Web estara corriendo en us servidor local.
 </b>
 ## Cuentas de Usuario de Inicio de Sesion📌
-<p align="center"><img src="https://github.com/LordZapallo/Adopcion-Mascotas/blob/main/entregables/pagina-inicio.png" width="200"></p><br> 
+<p align="center"><img src="https://github.com/LordZapallo/Adopcion-Mascotas/blob/main/entregables/pagina-inicio.png" width="350"></p><br> 
 
 1. Usuario Supervisor:
 ```
