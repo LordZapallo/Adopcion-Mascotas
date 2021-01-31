@@ -62,17 +62,20 @@ Laravel development server started: http://127.0.0.1:8000
 En este punto la aplicación Web estara corriendo en us servidor local.
 </b>
 ## Cuentas de Usuario de Inicio de Sesion📌
-<p align="center"><img src="https://github.com/LordZapallo/Adopcion-Mascotas/blob/main/entregables/pagina-inicio.png" width="200"></p>
-Usuario Supervisor:
+<p align="center"><img src="https://github.com/LordZapallo/Adopcion-Mascotas/blob/main/entregables/pagina-inicio.png" width="200"></p><br> 
+
+1. Usuario Supervisor:
 ```
 Usuario: admin@gmail.com
 Contraseña: 123456
 ```
-Usuario Regular:
+2. Usuario Regular:
 ```
 Usuario: user@gmail.com
 Contraseña: 123456
 ```
+<br> 
+
 ## Detalles para Desarrolladores ⚙️
 La solución está desarrollada con: Framework Lavarel – Vue.js – MySQL.<br> 
 Para mas detalles por favor revisar Archivo: <a href="https://github.com/LordZapallo/Adopcion-Mascotas/blob/main/package.json">package.json</a>
