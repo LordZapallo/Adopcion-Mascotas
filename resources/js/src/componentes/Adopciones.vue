@@ -152,14 +152,36 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">
-                            {{ modal.titulo }}
+                            {{ modal.titulo }} {{ mascota.nombre }}
                         </h5>
-                        <button type="button" class="close" @click="cerrar()">
+                        <button
+                            type="button"
+                            class="close"
+                            @click="cerrar()"
+                            v-if="!this.$route.params.id"
+                        >
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="row form-material">
+                            <div
+                                class="col-xl-12 col-lg-12 col-md-12"
+                                v-if="ficha.estado != null"
+                            >
+                                <div class="form-group aviso">
+                                    <label
+                                        for="label-input"
+                                        style="margin-top: 1%; margin-bottom: 1%;"
+                                        >Su Solicitud se encuentra :
+                                        {{ ficha.estado }}</label
+                                    >
+                                    <h6>
+                                        Los detalles de su solicitud se enviaran
+                                        a su correo eletrónico.
+                                    </h6>
+                                </div>
+                            </div>
                             <div class="col-xl-4 col-lg-4 col-md-4">
                                 <img
                                     :src="
@@ -249,12 +271,61 @@
                                 </div>
                             </div>
                             <vs-divider class="divider mt-4 mb-4 bold">
+                                Información del Solicitante
+                            </vs-divider>
+                            <div class="col-xl-6 col-lg-6 col-md-6">
+                                <div>
+                                    <label class="label-input"
+                                        >Nombre: {{ usuario.nombres }}
+                                        {{ usuario.apellidos }}</label
+                                    >
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6">
+                                <div>
+                                    <label class="label-input"
+                                        >Identificación:
+                                        {{ usuario.identificacion }}</label
+                                    >
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6">
+                                <div>
+                                    <label class="label-input"
+                                        >Email: {{ usuario.email }}</label
+                                    >
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6">
+                                <div>
+                                    <label class="label-input"
+                                        >Dirección:
+                                        {{ usuario.domicilio }}</label
+                                    >
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6">
+                                <div>
+                                    <label class="label-input"
+                                        >Teléfono: {{ usuario.telefono }}</label
+                                    >
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6">
+                                <div>
+                                    <label class="label-input"
+                                        >Celular: {{ usuario.celular }}</label
+                                    >
+                                </div>
+                            </div>
+                            <vs-divider class="divider mt-4 mb-4 bold">
                                 Referencia Personal
                             </vs-divider>
                             <div class="col-xl-4 col-lg-4 col-md-4">
                                 <div class="form-group">
                                     <label class="label-input">Nombre:</label>
                                     <input
+                                        :disabled="ficha.estado != null"
                                         type="text"
                                         class="form-control"
                                         v-model="
@@ -269,6 +340,7 @@
                                         >Parentesco:</label
                                     >
                                     <input
+                                        :disabled="ficha.estado != null"
                                         type="text"
                                         class="form-control"
                                         v-model="
@@ -281,6 +353,7 @@
                                 <div class="form-group">
                                     <label class="label-input">Teléfono:</label>
                                     <input
+                                        :disabled="ficha.estado != null"
                                         type="text"
                                         class="form-control"
                                         v-model="
@@ -298,6 +371,7 @@
                                         >N° Familiares:</label
                                     >
                                     <input
+                                        :disabled="ficha.estado != null"
                                         type="text"
                                         class="form-control"
                                         v-model="ficha.familiares_numero"
@@ -321,6 +395,7 @@
                                         Relevantes:</label
                                     >
                                     <input
+                                        :disabled="ficha.estado != null"
                                         type="text"
                                         class="form-control"
                                         v-model="ficha.familiares_enfermedad"
@@ -343,6 +418,7 @@
                                         >Tipo de Domicilio:</label
                                     >
                                     <select
+                                        :disabled="ficha.estado != null"
                                         class="form-control"
                                         v-model="ficha.domicilio_tipo"
                                     >
@@ -369,6 +445,7 @@
                                         >Estatus de Domicilio:</label
                                     >
                                     <select
+                                        :disabled="ficha.estado != null"
                                         class="form-control"
                                         v-model="ficha.domicilio_estatus"
                                     >
@@ -396,6 +473,7 @@
                                         >Tamaño (Metros Cuadrados):</label
                                     >
                                     <select
+                                        :disabled="ficha.estado != null"
                                         class="form-control"
                                         v-model="ficha.domicilio_metros"
                                     >
@@ -425,6 +503,7 @@
                                     >¿Por que desea adoptar?</label
                                 >
                                 <textarea
+                                    :disabled="ficha.estado != null"
                                     class="form-control"
                                     rows="2"
                                     v-model="ficha.porque_adoptar"
@@ -439,6 +518,7 @@
                                         >Tipo de Comida:</label
                                     >
                                     <select
+                                        :disabled="ficha.estado != null"
                                         class="form-control"
                                         v-model="ficha.tipo_comida_mascota"
                                     >
@@ -466,12 +546,25 @@
                                         Mascota:</label
                                     >
                                     <input
+                                        :disabled="ficha.estado != null"
                                         type="text"
                                         class="form-control"
                                         v-model="
                                             ficha.responsable_gastos_mascota
                                         "
                                     />
+                                    <div
+                                        v-if="!ficha.responsable_gastos_mascota"
+                                    >
+                                        <div
+                                            class="invalid-feedback"
+                                            style="display:block;"
+                                            v-for="err in errorresponsable_gastos_mascota"
+                                            :key="err"
+                                        >
+                                            {{ err }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-4">
@@ -480,6 +573,7 @@
                                         >Gasto Estimado Mensual:</label
                                     >
                                     <input
+                                        :disabled="ficha.estado != null"
                                         type="text"
                                         class="form-control"
                                         v-model="ficha.gasto_estimado_mensual"
@@ -512,6 +606,7 @@
                                                 name="visita_periodica"
                                                 id="visita_periodica_si"
                                                 value="Si"
+                                                :disabled="ficha.estado != null"
                                                 v-model="ficha.visita_periodica"
                                             />
                                             <label
@@ -533,6 +628,7 @@
                                         </div>
                                         <div class="form-check">
                                             <input
+                                                :disabled="ficha.estado != null"
                                                 class="form-check-input"
                                                 type="radio"
                                                 name="visita_periodica"
@@ -561,6 +657,7 @@
                                     <div class="row">
                                         <div class="form-check">
                                             <input
+                                                :disabled="ficha.estado != null"
                                                 class="form-check-input"
                                                 type="radio"
                                                 name="esterilizacion"
@@ -604,6 +701,7 @@
                                     <div class="row">
                                         <div class="form-check">
                                             <input
+                                                :disabled="ficha.estado != null"
                                                 class="form-check-input"
                                                 type="radio"
                                                 name="adopcion_compartida"
@@ -636,6 +734,7 @@
                                         </div>
                                         <div class="form-check">
                                             <input
+                                                :disabled="ficha.estado != null"
                                                 class="form-check-input"
                                                 type="radio"
                                                 name="adopcion_compartida"
@@ -661,6 +760,7 @@
                                     Adicionales:</label
                                 >
                                 <textarea
+                                    :disabled="ficha.estado != null"
                                     class="form-control"
                                     rows="2"
                                     v-model="ficha.observaciones"
@@ -668,7 +768,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer" v-if="ficha.estado == null">
                         <button
                             type="button"
                             class="btn btn-danger"
@@ -682,6 +782,15 @@
                             @click="guardar()"
                         >
                             Enviar Ficha de Adopción
+                        </button>
+                    </div>
+                    <div class="modal-footer" v-else>
+                        <button
+                            type="button"
+                            class="btn btn-danger"
+                            @click="cerrar()"
+                        >
+                            Cerrar
                         </button>
                     </div>
                 </div>
@@ -712,7 +821,7 @@ export default {
             },
             //modal
             modal: {
-                titulo: "Ficha de Adopción Animal",
+                titulo: "Ficha de Adopción de ",
                 estado: false
             },
             usuario: [],
@@ -723,6 +832,7 @@ export default {
                 fecha_finalizacion: moment()
                     .add(3, "day")
                     .format("YYYY-MM-DD"),
+                estado: null,
                 referencia_personal_nombre: "",
                 referencia_personal_parentesco: "",
                 referencia_personal_telefono: "",
@@ -741,7 +851,7 @@ export default {
                 adopcion_compartida: "",
                 observaciones: ""
             },
-            error: 0,
+            errorguardar: [],
             errorfamiliares_numero: [],
             errorfamiliares_enfermedad: [],
             errordomicilio_tipo: [],
@@ -838,13 +948,15 @@ export default {
                     alertify.success(
                         "Ficha de Adopción Registrada Exitosamente"
                     );
+                    this.modal.estado = false;
                     this.$router.push("/adopciones");
+                    this.listar(1, this.buscar);
                 });
         },
         validar() {
-            this.error = 0;
+            this.errorguardar = 0;
             this.errorfamiliares_numero = [];
-            this.errorsfamiliares_enfermedad = [];
+            this.errorfamiliares_enfermedad = [];
             this.errordomicilio_tipo = [];
             this.errordomicilio_estatus = [];
             this.errordomicilio_metros = [];
@@ -853,50 +965,98 @@ export default {
             this.errorgasto_estimado_mensual = [];
             this.errorvisita_periodica = [];
             this.erroradopcion_compartida = [];
-            if (!this.familiares_numero) {
+            if (!this.ficha.familiares_numero) {
                 this.errorfamiliares_numero.push("Campo Obligatorio");
-                this.error = 1;
+                this.errorguardar = 1;
             }
-            if (!this.familiares_enfermedad) {
-                this.errorsfamiliares_enfermedad.push("Campo Obligatorio");
-                this.error = 1;
+            if (!this.ficha.familiares_enfermedad) {
+                this.errorfamiliares_enfermedad.push("Campo Obligatorio");
+                this.errorguardar = 1;
             }
-            if (!this.domicilio_tipo) {
+            if (!this.ficha.domicilio_tipo) {
                 this.errordomicilio_tipo.push("Campo Obligatorio");
-                this.error = 1;
+                this.errorguardar = 1;
             }
-            if (!this.domicilio_estatus) {
+            if (!this.ficha.domicilio_estatus) {
                 this.errordomicilio_estatus.push("Campo Obligatorio");
-                this.error = 1;
+                this.errorguardar = 1;
             }
-            if (!this.domicilio_metros) {
+            if (!this.ficha.domicilio_metros) {
                 this.errordomicilio_metros.push("Campo Obligatorio");
-                this.error = 1;
+                this.errorguardar = 1;
             }
-            if (!this.tipo_comida_mascota) {
+            if (!this.ficha.tipo_comida_mascota) {
                 this.errortipo_comida_mascota.push("Campo Obligatorio");
-                this.error = 1;
+                this.errorguardar = 1;
             }
-            if (!this.responsable_gastos_mascota) {
+            if (!this.ficha.responsable_gastos_mascota) {
                 this.errorresponsable_gastos_mascota.push("Campo Obligatorio");
-                this.error = 1;
+                this.errorguardar = 1;
             }
-            if (!this.gasto_estimado_mensual) {
+            if (!this.ficha.gasto_estimado_mensual) {
                 this.errorgasto_estimado_mensual.push("Campo Obligatorio");
-                this.error = 1;
+                this.errorguardar = 1;
             }
-            if (!this.visita_periodica) {
+            if (!this.ficha.visita_periodica) {
                 this.errorvisita_periodica.push("Campo Obligatorio");
-                this.error = 1;
+                this.errorguardar = 1;
             }
-            if (!this.adopcion_compartida) {
+            if (!this.ficha.adopcion_compartida) {
                 this.erroradopcion_compartida.push("Campo Obligatorio");
-                this.error = 1;
+                this.errorguardar = 1;
             }
-            return this.error;
+            return this.errorguardar;
+        },
+        ver(data) {
+            axios
+                .get(
+                    `/ficha/listar?id_mascota=${data.id_mascota}&id_adopcion=${data.id_adopcion}&id_albergue=${data.id_albergue}`
+                )
+                .then(({ data }) => {
+                    this.mascota = data.mascota;
+                    this.albergue = data.albergue;
+                    this.usuario = data.solicitante;
+                    this.modal.estado = true;
+                    this.ficha = {
+                        id_adopcion: data.ficha.id_adopcion,
+                        fecha_emision: moment(data.ficha.fecha_emision).format(
+                            "YYYY-MM-DD"
+                        ),
+                        fecha_finalizacion: moment(
+                            data.ficha.fecha_finalizacion
+                        ).format("YYYY-MM-DD"),
+                        estado: data.ficha.estado,
+                        referencia_personal_nombre:
+                            data.ficha.referencia_personal_nombre,
+                        referencia_personal_parentesco:
+                            data.ficha.referencia_personal_parentesco,
+                        referencia_personal_telefono:
+                            data.ficha.referencia_personal_telefono,
+                        familiares_numero: data.ficha.familiares_numero,
+                        familiares_enfermedad: data.ficha.familiares_enfermedad,
+                        domicilio_tipo: data.ficha.domicilio_tipo,
+                        domicilio_estatus: data.ficha.domicilio_estatus,
+                        domicilio_metros: data.ficha.domicilio_metros,
+                        porque_adoptar: data.ficha.porque_adoptar,
+                        tipo_comida_mascota: data.ficha.tipo_comida_mascota,
+                        si_mascota_enferma: data.ficha.si_mascota_enferma,
+                        responsable_gastos_mascota:
+                            data.ficha.responsable_gastos_mascota,
+                        gasto_estimado_mensual:
+                            data.ficha.gasto_estimado_mensual,
+                        visita_periodica: data.ficha.visita_periodica,
+                        esterilizacion: data.ficha.esterilizacion,
+                        adopcion_compartida: data.ficha.adopcion_compartida,
+                        observaciones: data.ficha.observaciones
+                    };
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         },
         cerrar() {
             this.modal.estado = false;
+            this.ficha.estado = null;
         },
         cancelar() {
             this.modal.estado = false;
@@ -938,5 +1098,12 @@ export default {
 }
 .bold {
     font-weight: bold;
+}
+.aviso {
+    color: white;
+    background: #1e88e5;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid #3e3e3e;
 }
 </style>

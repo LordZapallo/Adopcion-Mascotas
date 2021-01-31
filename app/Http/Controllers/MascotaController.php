@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Mascota;
 use App\Models\Albergue;
 use App\Models\Adopcion;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -42,14 +43,17 @@ class MascotaController extends Controller
     {
         $mascota = Mascota::select("*")->where("id_mascota", "=", $request->id_mascota)->first();
         $albergue =  Albergue::select("*")->where("id_albergue", "=", $mascota->id_albergue)->first();
+        $solicitante = [];
         $ficha = [];
         if(isset($request->id_adopcion)){
             $ficha =  Adopcion::select("*")->where("id_adopcion", "=", $request->id_adopcion)->first();
+            $solicitante= User::select("*")->where("id", "=", $ficha->id_solicitante)->first();
         }
         return [
             'mascota' => $mascota,
             "albergue" => $albergue,
-            "ficha" => $ficha
+            "ficha" => $ficha,
+            "solicitante" => $solicitante
         ];
     }
     public function guardar(Request $request)

@@ -71924,13 +71924,13 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '/',
       name: 'inicio',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./src/componentes/Inicio.vue */ "./resources/js/src/componentes/Inicio.vue"));
+        return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./src/componentes/Inicio.vue */ "./resources/js/src/componentes/Inicio.vue"));
       }
     }, {
       path: '/mascotas',
       name: 'mascotas',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./src/componentes/Mascotas.vue */ "./resources/js/src/componentes/Mascotas.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(2), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./src/componentes/Mascotas.vue */ "./resources/js/src/componentes/Mascotas.vue"));
       }
     }, {
       path: '/adopciones',
@@ -71948,13 +71948,13 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       path: '/gestionadopciones',
       name: 'gestionadopciones',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ./src/componentes/GestionAdopciones.vue */ "./resources/js/src/componentes/GestionAdopciones.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./src/componentes/GestionAdopciones.vue */ "./resources/js/src/componentes/GestionAdopciones.vue"));
       }
     }]
   }, {
     path: "*",
     component: function component() {
-      return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./src/componentes/404.vue */ "./resources/js/src/componentes/404.vue"));
+      return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./src/componentes/404.vue */ "./resources/js/src/componentes/404.vue"));
     }
   }]
 });

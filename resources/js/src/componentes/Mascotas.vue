@@ -251,7 +251,7 @@
                         <button type="button" class="btn btn-secondary" @click="cerrar()">
                             Cerrar
                         </button>
-                        <button type="button" class="btn btn-primary" @click="adoptar(form.id_mascota)">
+                        <button type="button" class="btn btn-primary" @click="adoptar(form.id_mascota)" v-if="form.estado=='disponible'">
                             Adoptar
                         </button>
                     </div>

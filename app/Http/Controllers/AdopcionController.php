@@ -4,19 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Adopcion;
+use App\Models\Mascota;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+
 class AdopcionController extends Controller
 {
-    function listar_general(){
+    function listar_general()
+    {
         return Adopcion::all();
     }
     public function listar(Request $request)
     {
         $buscar = $request->buscar;
         $res = Adopcion::select("adopcion.*", "mascota.nombre as nombre_mascota", "albergue.nombre as nombre_albergue")
-        ->join('mascota','mascota.id_mascota','=','adopcion.id_mascota')
-        ->join('albergue','albergue.id_albergue','=','adopcion.id_albergue')
+            ->join('mascota', 'mascota.id_mascota', '=', 'adopcion.id_mascota')
+            ->join('albergue', 'albergue.id_albergue', '=', 'adopcion.id_albergue')
             ->where(function ($q) use ($buscar) {
                 $q->where("adopcion.id_adopcion", "like", "%" . $buscar . "%")
                     ->orWhere("adopcion.fecha_emision", "like", "%" . $buscar . "%")
@@ -38,11 +41,12 @@ class AdopcionController extends Controller
         ];
     }
 
-    public function guardar(Request $request){
+    public function guardar(Request $request)
+    {
         $dato = new Adopcion();
         $dato->fecha_emision = $request->adopcion["fecha_emision"];
         $dato->fecha_finalizacion = $request->adopcion["fecha_finalizacion"];
-        $dato->estado = null;
+        $dato->estado = "Adopción Pendiente";
         $dato->referencia_personal_nombre = $request->adopcion["referencia_personal_nombre"];
         $dato->referencia_personal_parentesco = $request->adopcion["referencia_personal_parentesco"];
         $dato->referencia_personal_telefono = $request->adopcion["referencia_personal_telefono"];
@@ -69,9 +73,20 @@ class AdopcionController extends Controller
         $mascota->estado = "Solicitud Pendiente";
         $mascota->save();
     }
-    function estado(Request $request){
+    function estado(Request $request)
+    {
         $adopcion = Adopcion::find($request->id);
         $adopcion->estado = $request->estado;
+        $adopcion->id_supervisor = Auth::User()->id;
         $adopcion->save();
+        if ($request->estado == "Adopción Rechazada") {
+            $mascota = Mascota::find($adopcion->id_mascota);
+            $mascota->estado = "disponible";
+            $mascota->save();
+        } elseif ($request->estado == "Adopción Aprobada") {
+            $mascota = Mascota::find($adopcion->id_mascota);
+            $mascota->estado = "adoptado";
+            $mascota->save();
+        }
     }
 }
