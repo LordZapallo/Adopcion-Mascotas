@@ -1,4 +1,4 @@
-<p align="center"><img src="/imagenes/avt.png" width="400"></p>
+<p align="center"><img src="https://github.com/LordZapallo/Adopcion-Mascotas/blob/main/public/imagenes/avt.png" width="400"></p>
 
 
 
