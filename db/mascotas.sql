@@ -11,7 +11,7 @@
  Target Server Version : 100408
  File Encoding         : 65001
 
- Date: 31/01/2021 01:59:22
+ Date: 31/01/2021 21:10:28
 */
 
 SET NAMES utf8mb4;
@@ -57,13 +57,15 @@ CREATE TABLE `adopcion`  (
   CONSTRAINT `fk_adopcion_mascota` FOREIGN KEY (`id_mascota`) REFERENCES `mascota` (`id_mascota`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_adopcion_user_solicitante` FOREIGN KEY (`id_solicitante`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_adopcion_user_supervisor` FOREIGN KEY (`id_supervisor`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of adopcion
 -- ----------------------------
 INSERT INTO `adopcion` VALUES (1, '2021-01-29', '2021-01-30', 'Adopción Aprobada', 'Carlos Freire', 'familiar', '2281457', 2, 'No', 'Casa', 'Propio', ' - 20', 'Deseamos Tener una mascota en casa', 'Croquetas', 'Solicitante de Adopción', 40, 'Si', 'Si', 'Si', 'Ninguna', '2021-01-29 01:48:15', '2021-01-29 01:48:18', 2, 1, 3, 1);
 INSERT INTO `adopcion` VALUES (2, '2021-01-30', '2021-02-02', 'Adopción Pendiente', 'Luis Gonzales', 'padre', '22578667', 3, 'Ninguna', 'Departamento', 'Arrendado', '- 30', 'Deseamos darle un compañero a nuestra mascota', 'Casera', 'solicitante', 20, 'Si', 'Si', 'Si', 'ninguna', '2021-01-30 23:11:09', '2021-01-30 23:58:26', 2, 1, 4, 1);
+INSERT INTO `adopcion` VALUES (3, '2021-01-31', '2021-02-03', 'Adopción Aprobada', 'Andres', 'Hermano', '9857438854', 2, 'Ninguna', 'Casa', 'Propio', '- 20', 'Deseo un compañero', 'Croquetas', 'solicitante', 20, 'Si', 'No', 'Si', 'ninguna', '2021-01-31 02:24:02', '2021-01-31 02:27:42', 2, 1, 1, 1);
+INSERT INTO `adopcion` VALUES (4, '2021-01-31', '2021-02-03', 'Adopción Rechazada', 'Andres', 'Hermano', '0947852337', 2, 'no', 'Departamento', 'Arrendado', '+ 3\n                                    0', NULL, 'Casera', 'titular', 10, 'No', 'No', 'No', 'ninguna', '2021-01-31 02:30:32', '2021-01-31 02:31:36', 2, 1, 2, 1);
 
 -- ----------------------------
 -- Table structure for albergue
@@ -120,8 +122,8 @@ CREATE TABLE `mascota`  (
 -- ----------------------------
 -- Records of mascota
 -- ----------------------------
-INSERT INTO `mascota` VALUES (1, 'Pochi.jpg', 'Pochi', 'canina', 'Pastor Aleman', '3 años', 'macho', '80 lb', '65 cm', 'negro y fuego', 'No', 'Sociable', 'Buen estado de Salud          No necesita cuidados especiales', NULL, 'disponible', '2021-01-28 00:16:57', '2021-01-28 00:17:02', 1);
-INSERT INTO `mascota` VALUES (2, 'Candy.jpg', 'Candy', 'canina', 'Cruzado', '1 año', 'hembra', '30 lb', '40 cm', 'café', 'Si', 'Tímido', 'Saludable                              No requiere cuidados especiales', NULL, 'disponible', '2021-01-28 01:08:48', '2021-01-28 01:08:50', 1);
+INSERT INTO `mascota` VALUES (1, 'Pochi.jpg', 'Pochi', 'canina', 'Pastor Aleman', '3 años', 'macho', '80 lb', '65 cm', 'negro y fuego', 'No', 'Sociable', 'Buen estado de Salud          No necesita cuidados especiales', NULL, 'adoptado', '2021-01-28 00:16:57', '2021-01-31 02:27:42', 1);
+INSERT INTO `mascota` VALUES (2, 'Candy.jpg', 'Candy', 'canina', 'Cruzado', '1 año', 'hembra', '30 lb', '40 cm', 'café', 'Si', 'Tímido', 'Saludable                              No requiere cuidados especiales', NULL, 'disponible', '2021-01-28 01:08:48', '2021-01-31 02:31:36', 1);
 INSERT INTO `mascota` VALUES (3, 'Michi.jfif', 'Michi', 'felina', 'Scottish Fold', '8 meses', 'macho', '3,6 kg', NULL, 'gris', 'No', 'Tímido', 'Saludable                              No requiere cuidados especiales', NULL, 'adoptado', '2021-01-28 01:27:06', '2021-01-28 01:27:03', 1);
 INSERT INTO `mascota` VALUES (4, 'Gordon.jpg', 'Gordon', 'felina', 'Siberiano', '9 meses', 'macho', '6 kg', NULL, 'Agritado (canela-negro-bl', 'No', 'Sociable', 'Saludable                              No requiere cuidados especiales', NULL, 'Solicitud Pendiente', '2021-01-28 01:35:05', '2021-01-30 23:58:26', 1);
 INSERT INTO `mascota` VALUES (5, 'Canela.jpg', 'Canela', 'canina', 'Pitbull', '2 años', 'hembra', '24 kg', '50 cm', 'crema-blanco', 'Si', 'Pasivo Agresivo', 'Saludable                              No requiere cuidados especiales', NULL, 'disponible', '2021-01-28 01:42:04', '2021-01-28 01:42:08', 1);
